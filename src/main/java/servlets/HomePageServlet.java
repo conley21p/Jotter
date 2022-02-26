@@ -13,7 +13,6 @@ public class HomePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Printing" + " size:" + Controller.getAssignments());
-        System.out.println(Controller.getAssignment(0));
         request.setAttribute("assignments", Controller.getAssignments());
         request.setAttribute("size", Controller.getAssignments().size());
         getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
