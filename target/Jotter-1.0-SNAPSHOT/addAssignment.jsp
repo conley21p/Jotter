@@ -5,7 +5,7 @@
   Time: 3:33 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Add Assignment</title>
@@ -13,10 +13,18 @@
 <body>
 <h1>Enter new assignment Below:</h1>
 <form action="AddAssignmentServlet" method="post">
-    <h4>Name:</h4><input type="text" name="name" />
-    <h4>Date:</h4><input type="date" name="date" />
-    <h4>Time:</h4><input type="time" name="time" />
-    <h4>description:</h4><input type="text" name="description" />
+    <h4>Name:*</h4><label>
+    <input type="text" name="name" required/>
+</label>
+    <h4>Due Date:*</h4><label>
+    <input type="date" name="date" required/>
+</label>
+    <h4>Due Time:*</h4><label>
+    <input type="time" name="time" value="23:50" required/>
+</label>
+    <h4>description:</h4><label>
+    <input type="text" name="description" />
+</label>
     <h4></h4><input type="submit" />
 </form>
 </body>
