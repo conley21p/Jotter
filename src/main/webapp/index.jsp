@@ -16,7 +16,7 @@
 <h1>Assignments</h1>
 <h4>Names:</h4>
     <c:forEach items="${assignments}" var="item">
-        -${item.getName()}<br>
+        -${item.getName()} ${item.getDate()}<br>
     </c:forEach>
 </body>
 </html>
