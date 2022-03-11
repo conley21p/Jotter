@@ -1,4 +1,4 @@
-package calender;
+package calendar;
 
 public class CalendarObject {
     private String name;

@@ -1,14 +1,14 @@
-package calender;
+package calendar;
 
-public class Assignmnet extends CalendarObject{
+public class Assignment extends CalendarObject{
     private boolean completed;
 
-    public Assignmnet(String obj) {
+    public Assignment(String obj) {
         super(obj);
         this.completed = false;
     }
 
-    public Assignmnet(String name, Date date, Time time, String description) {
+    public Assignment(String name, Date date, Time time, String description) {
         super(name, date, time, description);
         this.completed = false;
     }

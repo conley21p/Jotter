@@ -1,6 +1,6 @@
 package servlets;
 
-import calender.CalendarController;
+import calendar.CalendarController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,8 +18,8 @@ public class HomePageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("assignments", calendarController.getCalenderList().get(0).getCalendarObjList());
-        request.setAttribute("size", calendarController.getCalenderList().get(0).getCalendarObjList().size());
+        request.setAttribute("assignments", calendarController.getCalendarList().get(0).getCalendarObjList());
+        request.setAttribute("size", calendarController.getCalendarList().get(0).getCalendarObjList().size());
         /*
             Send the user to the index(home page) with the list of assignments
          */
