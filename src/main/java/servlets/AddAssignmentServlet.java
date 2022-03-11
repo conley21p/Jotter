@@ -1,6 +1,6 @@
 package servlets;
 
-import calender.*;
+import calendar.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -19,17 +19,17 @@ public class AddAssignmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StringBuilder calenderObj = new StringBuilder();
-        calenderObj.append(request.getParameter("name") + ",");
+        StringBuilder calendarObj = new StringBuilder();
+        calendarObj.append(request.getParameter("name") + ",");
         System.out.println("time" +request.getParameter("time") + "," );
-        calenderObj.append(request.getParameter("date") + ",");
-        calenderObj.append(request.getParameter("time") + ",");
-        calenderObj.append(request.getParameter("description") + ",");
+        calendarObj.append(request.getParameter("date") + ",");
+        calendarObj.append(request.getParameter("time") + ",");
+        calendarObj.append(request.getParameter("description") + ",");
         /*
             Add a new assignmnet ot the assignmnet list by sending HTTP request
          */
         try{
-            HomePageServlet.calendarController.getCalenderList().get(0).addToCalenderObjList(new Assignmnet(calenderObj.toString()));
+            HomePageServlet.calendarController.getCalendarList().get(0).addToCalendarObjList(new Assignment(calendarObj.toString()));
         } catch (Exception e){
             e.printStackTrace();
         }

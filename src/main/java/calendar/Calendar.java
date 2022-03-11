@@ -1,4 +1,4 @@
-package calender;
+package calendar;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class Calendar {
     /*
         Add calender object to calender list
      */
-    public void addToCalenderObjList(CalendarObject obj){
+    public void addToCalendarObjList(CalendarObject obj){
         calendarObjList.add(obj);
         //  Sort
 
@@ -26,7 +26,7 @@ public class Calendar {
     /*
         Delete calender object at index of list
      */
-    public CalendarObject deleteCalenderObjectList(int index){
+    public CalendarObject deleteCalendarObjectList(int index){
         currentSize--;
         CalendarObject temp = this.calendarObjList.get(index);
         this.calendarObjList.remove(index);
