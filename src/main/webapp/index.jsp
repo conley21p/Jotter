@@ -11,6 +11,7 @@
 <h1><%= " Today's TO-Do list" %>
 </h1>
 <br/>
+<a href="RegisterServlet">Register</a>
 <a href="AddAssignmentServlet">Click To Add an Assignment</a>
 
 <h1>Assignments</h1>
