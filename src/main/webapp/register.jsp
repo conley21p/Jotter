@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Create an Account</h1>
-<form method="post" action="/register">
+<form method="post" action="RegisterServlet">
 
     <label>Email:</label><br>
     <input type="email" id="email" name="email" required>
