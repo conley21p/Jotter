@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Jotter" target="1.8" />
+      <module name="Jotter" target="12" />
     </bytecodeTargetLevel>
   </component>
 </project>
