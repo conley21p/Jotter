@@ -2,17 +2,13 @@ package Account;
 
 public class Account {
     private String email;
-    private String username;
+    private final String username;
     private String password;
 
     public Account(String user, String pass, String email) {
         this.username = user;
         this.password = pass;
         this.email = email;
-    }
-
-    public String exportAsCsvString() {
-        return email + "," + username + "," + password;
     }
 
     public String getUsername() {

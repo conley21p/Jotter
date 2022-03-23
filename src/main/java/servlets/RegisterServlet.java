@@ -1,6 +1,6 @@
 package servlets;
 
-import Account.Account;
+import Account.AccountCreator;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -9,8 +9,6 @@ import java.io.IOException;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-
-    public static Account newAccount;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,8 +24,12 @@ public class RegisterServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
 
         if (password.equals(confirmPassword)) {
-            System.out.println("Account created.");
-            newAccount = new Account (email, username, password);
+            System.out.println("Trying account create...");
+            if (AccountCreator.makeAccount(username, password, email))
+                System.out.println("Account created.");
+            else
+                System.out.println("Account failed");
+
         }
         else {
             request.setAttribute("error", "The passwords do not match.");
