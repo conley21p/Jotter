@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <title>JOTTER!!</title>
+    <title>Homepage - Jotter</title>
 </head>
 <body>
 <h1><%= " Today's TO-Do list" %>
