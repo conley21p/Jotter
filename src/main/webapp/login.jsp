@@ -11,7 +11,7 @@
 <form action="LoginServlet" method="post">
 
     <label>Username:</label>
-    <input type="text" id="username" name="username" value="${username}" required><br>
+    <input type="text" id="username" name="username" value="username" required><br>
 
     <label>Password:</label>
     <input type="password" id="password" name="password" required><br>
