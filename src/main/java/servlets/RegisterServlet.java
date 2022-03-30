@@ -30,7 +30,6 @@ public class RegisterServlet extends HttpServlet {
             error = "Username is already taken. Please try a different username";
         } else {
             if (AccountCreator.makeAccount(username, password, email)) { // Happy Path
-                AccountCreator.makeAccount(username, password, email);
                 System.out.println("Account created.");
                 getServletContext().getRequestDispatcher("/addAssignment.jsp").forward(request, response); // go to homepage
             } else {
