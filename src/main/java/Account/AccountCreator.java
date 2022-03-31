@@ -34,11 +34,16 @@ public class AccountCreator {
         // creating user's calendar directory
         File calendarsDirectory = new File(accountsPath + "/" + user + "/Calendars");
         calendarsDirectory.mkdir();
-
-        // TODO create starter calendar
-
-
-
+        // creating default school calendar
+        File defaultCalendar = new File(accountsPath + "/" + user + "/Calendars/School");
+        try {
+            PrintWriter outfile = new PrintWriter(new FileWriter(defaultCalendar));
+            //outfile.print(user + "," + pass + "," + email);
+            outfile.close();
+        }
+        catch (IOException e) {
+            System.out.println("Could not create user account info");
+        }
 
 
 

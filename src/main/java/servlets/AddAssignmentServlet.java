@@ -29,7 +29,8 @@ public class AddAssignmentServlet extends HttpServlet {
             Add a new assignmnet to the assignmnet list by sending HTTP request
          */
         try{
-            HomePageServlet.calendarController.getCalendarList().get(0).addToCalendarObjList(new Assignment(calendarObj.toString()));
+            HomePageServlet.user.getCurrCal().addNewToCalendarObjList(HomePageServlet.user.getUsername(),
+                                                                      new Assignment(calendarObj.toString()));
         } catch (Exception e){
             e.printStackTrace();
         }

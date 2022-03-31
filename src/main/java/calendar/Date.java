@@ -1,5 +1,6 @@
 package calendar;
 
+
 public class Date {
     private int year;
     private int month;
@@ -24,9 +25,11 @@ public class Date {
         this.day    = d;
     }
 
+
+
     @Override
     public String toString() {
-        return month + "/" + day + "/" + year;
+        return this.year + "-" + this.month + "-" + this.day;
     }
 
     /*
@@ -50,4 +53,30 @@ public class Date {
     public void setDay(int day) {
         this.day = day;
     }
+
+//    @Override
+    public int compare(Date dateObj) {
+        if (this.year > dateObj.year){
+            return 1;
+        }else if(this.year < dateObj.year){
+            return -1;
+        }else{
+            //This means years are the same, so compare month
+            if(this.month > dateObj.month){
+                return 1;
+            }else if(this.month < dateObj.month){
+                return -1;
+            }else{
+                //This means that there year and month are the same, check day
+                if (this.day > dateObj.day){
+                    return 1;
+                }else if(this.day < dateObj.day){
+                    return -1;
+                }else{
+                    return 0;
+                }
+            }
+        }
+    }
+
 }

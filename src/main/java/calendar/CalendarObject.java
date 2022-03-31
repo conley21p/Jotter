@@ -1,5 +1,9 @@
 package calendar;
 
+import Account.AccountCreator;
+
+import java.io.*;
+
 public class CalendarObject {
     private String name;
     private Date date;
@@ -23,11 +27,8 @@ public class CalendarObject {
         if (temp.length > 3){
             this.description= temp[3];
         }
-
-
-
-
     }
+
     //  Overloaded constructor
     public CalendarObject(String name,
                           Date date,
@@ -38,14 +39,62 @@ public class CalendarObject {
         this.time           = time;
         this.description    = description;
     }
+    public CalendarObject(String name,
+                          String date,
+                          String time,
+                          String description){
+        this.name           = name;
+        this.date           = new Date(date);
+        this.time           = new Time(time);
+        this.description    = description;
+    }
+
+    /*
+     *  This method is used to save calendar object to database
+     */
+    public void saveToDataBase(String username,
+                                   String calenderName){
+        ClassLoader loader = AccountCreator.class.getClassLoader();
+        String tempPath = loader.getResource("Account/AccountCreator.class").toString();
+        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
+
+        // Open Calender object is in
+        try {
+            File file = new File(accountsPath);
+            File temp = File.createTempFile("temp-file-name", ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            PrintWriter pw = new PrintWriter(new FileWriter(temp));
+            String line;
+            if((line = br.readLine()) != null){
+                do{
+
+                    String templine[] =  line.split(",");
+                    Date tempDate = new Date(templine[0]);
+                    if (this.date.compare(tempDate) == 1){
+                        pw.println(this.toString());
+                    }
+                    //  Print the last read line
+                    pw.println(line);
+                }while((line = br.readLine()) != null);
+            }else{
+                System.out.println("db is empty\n");
+                pw.println(this.toString());
+            }
+            br.close();
+            pw.close();
+            file.delete();
+            temp.renameTo(file);
+        }catch (IOException e) {
+            System.out.println("Problem saving assignment to database");
+            //return false;
+        }
+    //return true;
+    }
 
     @Override
     public String toString() {
-        return "CalendarObject{" +
-                "name='" + name + '\'' +
-                ", date=" + date +
-                ", time=" + time +
-                '}';
+        return this.date + ","  + this.time + "," + this.name + "," + this.description;
     }
 
     /*
