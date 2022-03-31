@@ -15,9 +15,10 @@ public class HomePageServlet extends HttpServlet {
         Create a calendar controller object.
             -calendarController is basically the live database
      */
+    //  Default auto load already created class
     public static User user = new User("conley",
             CalendarController.getCalendarNameList("conley"),
-            CalendarController.getCalendar("conley","School.csv"));
+            CalendarController.getCalendar("conley","School"));
 //    public static User user = new User();
 
     @Override

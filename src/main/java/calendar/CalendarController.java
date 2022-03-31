@@ -39,9 +39,11 @@ public class CalendarController {
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + defaultName + "/";
 
         // Open Calender object is in
+        System.out.println("accountsPath create cal:" + accountsPath + "\n");
 
         Calendar defaultCal = new Calendar();
         try {
+
             File file = new File(accountsPath);
             BufferedReader br = new BufferedReader(new FileReader(file));
 
