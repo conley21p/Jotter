@@ -1,14 +1,14 @@
 package calendar;
 
-import Account.AccountCreator;
+import account.AccountManager;
 
 import java.io.*;
 
 public class CalendarController {
 
     public static String[] getCalendarNameList(String username){
-        ClassLoader loader = AccountCreator.class.getClassLoader();
-        String tempPath = loader.getResource("Account/AccountCreator.class").toString();
+        ClassLoader loader = AccountManager.class.getClassLoader();
+        String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/";
 
@@ -33,8 +33,8 @@ public class CalendarController {
     }
 
     public static Calendar getCalendar(String username,String defaultName){
-        ClassLoader loader = AccountCreator.class.getClassLoader();
-        String tempPath = loader.getResource("Account/AccountCreator.class").toString();
+        ClassLoader loader = AccountManager.class.getClassLoader();
+        String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + defaultName + "/";
 

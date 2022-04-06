@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "RegisterPage", urlPatterns = "/RegisterServlet")
+@WebServlet(name = "RegisterPage", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
 
     @Override
@@ -19,6 +19,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("doPost register");
         String email = request.getParameter("email");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -32,6 +33,8 @@ public class RegisterServlet extends HttpServlet {
         } else if (false) { // TODO Authenticator checks if username is already taken
             error = "Username is already taken. Please try a different username";
         } else {
+            System.out.println("36");
+            System.out.println(username + " " + password + " " + email);
             if (AccountManager.makeAccount(username, password, email)) { // Happy Path
                 System.out.println("Account created.");
 
@@ -44,6 +47,7 @@ public class RegisterServlet extends HttpServlet {
                 //response.sendRedirect("/HomePageServlet");
                 //getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // go to homepage
             } else {
+                System.out.println("error");
                 error = "Account creation failed";
                 request.setAttribute("username", username); // maintaining valid entry
             }

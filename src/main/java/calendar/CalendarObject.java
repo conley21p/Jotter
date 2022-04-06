@@ -1,6 +1,6 @@
 package calendar;
 
-import Account.AccountCreator;
+import account.AccountManager;
 
 import java.io.*;
 
@@ -54,8 +54,8 @@ public class CalendarObject {
      */
     public void saveToDataBase(String username,
                                    String calenderName){
-        ClassLoader loader = AccountCreator.class.getClassLoader();
-        String tempPath = loader.getResource("Account/AccountCreator.class").toString();
+        ClassLoader loader = AccountManager.class.getClassLoader();
+        String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
 

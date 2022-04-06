@@ -9,7 +9,9 @@ import java.io.PrintWriter;
 
 public class AccountManager {
     public static boolean makeAccount(String username, String password, String email) {
+        System.out.println("first 1");
         ClassLoader loader = AccountManager.class.getClassLoader();
+        System.out.printf("first");
         String tempPath = loader.getResource("account/AccountManager.class").toString();
 
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
