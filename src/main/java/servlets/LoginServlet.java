@@ -1,5 +1,9 @@
 package servlets;
 
+import User.User;
+import authenticator.LoginAuthenticator;
+import calendar.CalendarController;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -17,13 +21,24 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        /* TODO once LoginAuthenticator class and Account directory are done
-        if (loginAuthenticator.authenticate) { // if username and password do not match
-            error = "Username and Password are invalid.";
-        } else { // username does not exist in Account directory
-            error = "Username does not exist."
+        String error = null;
+
+        if (LoginAuthenticator.authenticate(username, password)) {
+            System.out.println("Successfully logged in");
+            String[] calList    = CalendarController.getCalendarNameList(username);
+            HomePageServlet.user = new User(username,
+                                            calList,
+                                            CalendarController.getCalendar(username,calList[0]));
+            System.out.println(HomePageServlet.user.getCurrCal().getName() + " checking");
+            //System.out.println("CalName:" + HomePageServlet.user.getCurrCal().getName()+ "\n");
+//            response.sendRedirect("/HomePageServlet");
+            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // return to register page
+        } else {
+            error = "Username and password do not match.";
+            request.setAttribute("username", username);
         }
-         */
-        // request.setAttribute("error", error); TODO error for login.jsp
+
+        request.setAttribute("error", error);
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }

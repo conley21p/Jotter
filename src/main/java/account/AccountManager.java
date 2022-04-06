@@ -1,6 +1,5 @@
 package account;
 
-import utils.UserController;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -40,7 +39,7 @@ public class AccountManager {
         calendarsDirectory.mkdir();
 
         // Load user
-        UserController.setUser(username);
+        //UserController.setUser(username);
 
         // TODO create starter calendar
 
