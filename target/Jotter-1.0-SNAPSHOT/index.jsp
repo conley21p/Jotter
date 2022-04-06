@@ -5,12 +5,14 @@
 <html>
 
 <head>
-    <title>JOTTER!!</title>
+    <title>Homepage - Jotter</title>
 </head>
 <body>
 <h1><%= " Today's TO-Do list" %>
 </h1>
 <br/>
+<a href="RegisterServlet">Register</a>
+<a href="LoginServlet">Login</a>
 <a href="AddAssignmentServlet">Click To Add an Assignment</a>
 
 <h1>Assignments</h1>

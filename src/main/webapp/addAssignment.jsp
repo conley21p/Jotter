@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-    <title>Add Assignment</title>
+    <title>Add Assignment - Jotter</title>
 </head>
 <body>
 <h1>Enter new assignment Below:</h1>
