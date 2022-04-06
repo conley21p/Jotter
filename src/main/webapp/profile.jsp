@@ -14,7 +14,10 @@
     <label>Username of any account you want to delete:</label>
     <input type="text" id="username" name="username" value="${username}" >
     <button type="submit">Delete Account</button><br>
-    <button type="submit" name="decision" value="deleteAccount">Delete Loaded Account: <%=UserController.getUser()%></button>
+    <button type="submit" name="decision" value="deleteAccount">Delete Loaded Account: <%=UserController.getUser()%></button><br>
+
+    <label>Change Username</label>
+    <input type="text" id="newUsername" name="newUsername" value="${newUsername}">
     <button type="submit" name="decision" value="changeUsername">Change Username</button>
 
 </form>

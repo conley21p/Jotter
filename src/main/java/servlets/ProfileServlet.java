@@ -23,6 +23,8 @@ public class ProfileServlet extends HttpServlet {
                 System.out.println("Account " + UserController.getUser() + "deleted with UserController");
                 UserController.logoff();
             }
+        } else if (decision.equals("changeUsername")) {
+            
         }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
     }
