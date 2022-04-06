@@ -1,13 +1,13 @@
 package servlets;
 
-import Account.AccountCreator;
+import account.AccountManager;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "RegisterPage", urlPatterns = "/RegisterServlet")
+@WebServlet(name = "RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
 
     @Override
@@ -26,12 +26,13 @@ public class RegisterServlet extends HttpServlet {
 
         if (!password.equals(confirmPassword)) {
             error = "Passwords do not match.";
+            System.out.println("Check");
         } else if (false) { // TODO Authenticator checks if username is already taken
             error = "Username is already taken. Please try a different username";
         } else {
-            if (AccountCreator.makeAccount(username, password, email)) { // Happy Path
+            if (AccountManager.makeAccount(username, password, email)) { // Happy Path
                 System.out.println("Account created.");
-                getServletContext().getRequestDispatcher("/addAssignment.jsp").forward(request, response); // go to homepage
+                getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // go to homepage
             } else {
                 error = "Account creation failed";
                 request.setAttribute("username", username); // maintaining valid entry

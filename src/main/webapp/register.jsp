@@ -8,18 +8,18 @@
 <p>${error}</p>
 
 <h1>Create an Account</h1>
-<form action="RegisterServlet" method="post">
+<form action="/register" method="post">
 
-    <label>Email:</label>
+    <label for="email">Email:</label>
     <input type="email" id="email" name="email" value="${email}" required><br>
 
-    <label>Username:</label>
+    <label for="username">Username:</label>
     <input type="text" id="username" name="username" value="${username}" required><br>
 
-    <label>Password:</label>
+    <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br>
 
-    <label>Confirm Password:</label>
+    <label for="confirmPassword">Confirm Password:</label>
     <input type="password" id="confirmPassword" name="confirmPassword" required><br>
 
     <button type="submit">Create Account</button>
