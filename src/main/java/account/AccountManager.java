@@ -1,5 +1,7 @@
 package account;
 
+import utils.UserController;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,6 +36,9 @@ public class AccountManager {
         // creating user's calendar directory
         File calendarsDirectory = new File(accountsPath + "/" + username + "/Calendars");
         calendarsDirectory.mkdir();
+
+        // Load user
+        UserController.setUser(username);
 
         // TODO create starter calendar
 
