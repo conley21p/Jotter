@@ -8,7 +8,7 @@
 <%-- <p>${error}</p> --%>
 
 <h1>Login to Jotter</h1>
-<form action="LoginServlet" method="post">
+<form action="login" method="post">
 
     <label>Username:</label>
     <input type="text" id="username" name="username" required><br>
