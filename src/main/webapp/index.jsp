@@ -13,6 +13,7 @@
 <br/>
 <a href="/profile">Profile</a>
 <a href="/register">Register</a>
+<a href="/login">Login</a>
 <a href="AddAssignmentServlet">Click To Add an Assignment</a>
 
 <h1>Assignments</h1>

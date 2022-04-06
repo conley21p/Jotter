@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Delete Account - Jotter</title>
+    <title>Delete account - Jotter</title>
 </head>
 <body>
 <h1>Are you sure you want to delete your account?</h1>

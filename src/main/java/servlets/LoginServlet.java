@@ -1,11 +1,13 @@
 package servlets;
 
+import authenticator.LoginAuthenticator;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "LoginServlet", urlPatterns = "/LoginServlet")
+@WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,13 +19,17 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        /* TODO once LoginAuthenticator class and Account directory are done
-        if (loginAuthenticator.authenticate) { // if username and password do not match
-            error = "Username and Password are invalid.";
-        } else { // username does not exist in Account directory
-            error = "Username does not exist."
+        String error = null;
+
+        if (LoginAuthenticator.authenticate(username, password)) {
+            System.out.println("Successfully logged in");
+            getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
+        } else {
+            error = "Username and password do not match.";
+            request.setAttribute("username", username);
         }
-         */
-        // request.setAttribute("error", error); TODO error for login.jsp
+
+        request.setAttribute("error", error);
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
