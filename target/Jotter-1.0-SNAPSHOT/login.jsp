@@ -4,7 +4,7 @@
     <title>Login - Jotter</title>
 </head>
 <body>
-
+<%-- TODO Still need to work on error (If authentication does not work) --%>
 <%-- <p>${error}</p> --%>
 
 <h1>Login to Jotter</h1>
