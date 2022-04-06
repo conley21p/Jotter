@@ -1,6 +1,6 @@
 package servlets;
 
-import Account.AccountCreator;
+import account.AccountManager;
 import calendar.CalendarController;
 import User.User;
 
@@ -28,10 +28,11 @@ public class RegisterServlet extends HttpServlet {
 
         if (!password.equals(confirmPassword)) {
             error = "Passwords do not match.";
+            System.out.println("Check");
         } else if (false) { // TODO Authenticator checks if username is already taken
             error = "Username is already taken. Please try a different username";
         } else {
-            if (AccountCreator.makeAccount(username, password, email)) { // Happy Path
+            if (AccountManager.makeAccount(username, password, email)) { // Happy Path
                 System.out.println("Account created.");
 
                 String[] calList    = CalendarController.getCalendarNameList(username);
