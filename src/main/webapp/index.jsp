@@ -14,6 +14,7 @@
 <a href="/profile">Profile</a>
 <a href="/register">Register</a>
 <a href="AddAssignmentServlet">Click To Add an Assignment</a>
+<a href="/FileServlet">File</a>
 
 <h1>Assignments</h1>
 <h4>Names:</h4>
