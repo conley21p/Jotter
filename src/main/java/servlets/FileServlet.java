@@ -1,8 +1,5 @@
 package servlets;
 
-import calendar.Assignment;
-import calendar.File;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;

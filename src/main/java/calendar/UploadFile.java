@@ -1,10 +1,10 @@
 package calendar;
 
-public class File {
+public class UploadFile {
     private String attachmentFile; //path to the file?
     private String assignmentName; //Name of the assignment the File is attached to
 
-    public File(String file, String name){
+    public UploadFile(String file, String name){
         attachmentFile = file;
         assignmentName = name;
     }

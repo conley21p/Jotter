@@ -1,7 +1,6 @@
 package calendar;
 
 import account.AccountManager;
-
 import java.io.*;
 
 public class CalendarObject {
