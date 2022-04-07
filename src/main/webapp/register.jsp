@@ -7,7 +7,7 @@
 
 <p>${error}</p>
 
-<h1>Create an Account</h1>
+<h1>Create an account</h1>
 <form action="/register" method="post">
 
     <label for="email">Email:</label>
@@ -22,7 +22,7 @@
     <label for="confirmPassword">Confirm Password:</label>
     <input type="password" id="confirmPassword" name="confirmPassword" required><br>
 
-    <button type="submit">Create Account</button>
+    <button type="submit">Create account</button>
 
 </form>
 </body>

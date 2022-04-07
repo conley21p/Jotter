@@ -1,7 +1,6 @@
 package servlets;
 
 import account.AccountManager;
-import utils.UserController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,10 +18,10 @@ public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String decision = request.getParameter("decision");
         if (decision.equals("deleteAccount")) {
-            if (AccountManager.deleteAccount(UserController.getUser())) {
-                System.out.println("Account " + UserController.getUser() + "deleted with UserController");
-                UserController.logoff();
-            }
+//            if (AccountManager.deleteAccount(UserController.getUser())) {
+//                System.out.println("account " + UserController.getUser() + "deleted with UserController");
+//                UserController.logoff();
+//            }
         }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
     }
