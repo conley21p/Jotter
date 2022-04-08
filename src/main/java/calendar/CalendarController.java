@@ -13,8 +13,8 @@ public class CalendarController {
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/";
 
         //Open user/Calendar folder and store name of each file as a calendar name
-        UploadFile folder = new UploadFile(accountsPath);
-        UploadFile[] listOfFiles = folder.listFiles();
+        File folder = new File(accountsPath);
+        File[] listOfFiles = folder.listFiles();
 
         // Will store list of calendars
         String[] calNames = new String[5];
@@ -44,7 +44,7 @@ public class CalendarController {
         Calendar defaultCal = new Calendar();
         try {
 
-            UploadFile file = new UploadFile(accountsPath);
+            File file = new File(accountsPath);
             BufferedReader br = new BufferedReader(new FileReader(file));
 
             String line;
