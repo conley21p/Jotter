@@ -66,13 +66,16 @@ public class CalendarObject {
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(temp));
             String line;
+            boolean addedFlag = true;
             if((line = br.readLine()) != null){
                 do{
 
                     String templine[] =  line.split(",");
                     Date tempDate = new Date(templine[0]);
-                    if (this.date.compare(tempDate) == 1){
+                    System.out.println("Date to string is:" + tempDate.toString());
+                    if (this.date.compare(tempDate) < 0 && addedFlag){
                         pw.println(this.toString());
+                        addedFlag = false;
                     }
                     //  Print the last read line
                     pw.println(line);
@@ -94,7 +97,8 @@ public class CalendarObject {
 
     @Override
     public String toString() {
-        return this.date + ","  + this.time + "," + this.name + "," + this.description;
+        System.out.println("tostring for calObj show date:"+ this.date.toString());
+        return this.date.toString() + ","  + this.time.toString() + "," + this.name + "," + this.description;
     }
 
     /*

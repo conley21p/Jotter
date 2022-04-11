@@ -30,9 +30,10 @@ public class LoginServlet extends HttpServlet {
                                             calList,
                                             CalendarController.getCalendar(username,calList[0]));
             System.out.println(HomePageServlet.user.getCurrCal().getName() + " checking");
-            //System.out.println("CalName:" + HomePageServlet.user.getCurrCal().getName()+ "\n");
-//            response.sendRedirect("/HomePageServlet");
-            getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // return to register page
+            System.out.println("send redirect**************");
+            response.sendRedirect("/HomePageServlet");
+//            getServletContext().getRequestDispatcher("/HomePageServlet").forward(request, response); // return to register page
+            return;
         } else {
             error = "Username and password do not match.";
             request.setAttribute("username", username);

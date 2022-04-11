@@ -23,6 +23,7 @@ public class AddAssignmentServlet extends HttpServlet {
         calendarObj.append(request.getParameter("name") + ",");
         System.out.println("time" +request.getParameter("time") + "," );
         calendarObj.append(request.getParameter("date") + ",");
+        System.out.println(request.getParameter("date"));
         calendarObj.append(request.getParameter("time") + ",");
         calendarObj.append(request.getParameter("description") + ",");
         /*

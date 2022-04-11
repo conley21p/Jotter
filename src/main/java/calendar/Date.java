@@ -8,27 +8,29 @@ public class Date {
 
     //  String date format needs to be mm/dd/yyyy
     public Date(String date){
+        System.out.println("Date constructor param:"+date);
         String temp[] = date.split("-");
 
-        this.year   = Integer.parseInt(temp[2]);
-        this.month  = Integer.parseInt(temp[0]);
-        this.day    = Integer.parseInt(temp[1]);
+        this.year   = Integer.parseInt(temp[0]);
+        this.month  = Integer.parseInt(temp[1]);
+        this.day    = Integer.parseInt(temp[2]);
     }
-    public Date(String m, String d, String y){
+    public Date(String y, String m, String d){
         this.year   = Integer.parseInt(y);
         this.month  = Integer.parseInt(m);
         this.day    = Integer.parseInt(d);
     }
-    public Date(int m, int d, int y){
-        this.year   = y;
-        this.month  = m;
-        this.day    = d;
-    }
+//    public Date(int m, int d, int y){
+//        this.year   = y;
+//        this.month  = m;
+//        this.day    = d;
+//    }
 
 
 
     @Override
     public String toString() {
+        System.out.println("year for date is:"+ this.year);
         return this.year + "-" + this.month + "-" + this.day;
     }
 

@@ -49,6 +49,21 @@ public class Calendar {
         currentSize++;
     }
     /*
+        Get calender object from given name of list
+     */
+    public CalendarObject getCalendarObject(String name){
+        currentSize--;
+        for (CalendarObject cal: this.calendarObjList) {
+//            System.out.println(cal.getName());
+            if (cal.getName().equals(name)){
+                return cal;
+            }
+        }
+        System.out.println("No calendar Match was found for getting to edit");
+        return null;
+    }
+
+    /*
         Delete calender object at index of list
      */
     public CalendarObject deleteCalendarObjectList(int index){
