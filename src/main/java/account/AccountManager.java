@@ -37,6 +37,13 @@ public class AccountManager {
         // creating user's calendar directory
         File calendarsDirectory = new File(accountsPath + "/" + username + "/Calendars");
         calendarsDirectory.mkdir();
+        File defaultCal = new File(accountsPath + "/" + username + "/Calendars/School");
+        try{
+            PrintWriter outfile = new PrintWriter(new FileWriter(defaultCal));
+            outfile.close();
+        }catch (IOException e){
+            System.out.println("Error creating default calendar");
+        }
 
         // Load user
         //UserController.setUser(username);

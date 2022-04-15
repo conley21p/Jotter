@@ -41,7 +41,7 @@ public class Calendar {
     public void addNewToCalendarObjList(String username,CalendarObject obj){
         //  Add New Object to list
         calendarObjList.add(obj);
-
+        System.out.println("save to database username:" + username + " calName:" + this.name);
         //Save object to database
         obj.saveToDataBase(username,
                             this.name);

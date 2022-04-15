@@ -13,6 +13,10 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // loggin off
+        /*
+        HomePageServlet.user = new User();
+         */
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
@@ -32,7 +36,6 @@ public class LoginServlet extends HttpServlet {
             System.out.println(HomePageServlet.user.getCurrCal().getName() + " checking");
             System.out.println("send redirect**************");
             response.sendRedirect("/HomePageServlet");
-//            getServletContext().getRequestDispatcher("/HomePageServlet").forward(request, response); // return to register page
             return;
         } else {
             error = "Username and password do not match.";
