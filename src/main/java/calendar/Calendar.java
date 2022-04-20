@@ -41,13 +41,28 @@ public class Calendar {
     public void addNewToCalendarObjList(String username,CalendarObject obj){
         //  Add New Object to list
         calendarObjList.add(obj);
-
+        System.out.println("save to database username:" + username + " calName:" + this.name);
         //Save object to database
         obj.saveToDataBase(username,
                             this.name);
 
         currentSize++;
     }
+    /*
+        Get calender object from given name of list
+     */
+    public CalendarObject getCalendarObject(String name){
+        currentSize--;
+        for (CalendarObject cal: this.calendarObjList) {
+//            System.out.println(cal.getName());
+            if (cal.getName().equals(name)){
+                return cal;
+            }
+        }
+        System.out.println("No calendar Match was found for getting to edit");
+        return null;
+    }
+
     /*
         Delete calender object at index of list
      */

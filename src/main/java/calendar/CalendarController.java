@@ -49,16 +49,28 @@ public class CalendarController {
 
             String line;
             while((line = br.readLine()) != null){
+                /*
+                 *  Assignments are stored in the database in this format:
+                 *  Date,time,name,description
+                 *
+                 *  Date format: yyyy-mm-dd
+                 *  Time format: in military time hh:mm
+                 */
                 String templine[] =  line.split(",");
                 String dateString = templine[0];
                 String timeString = templine[1];
-                String nameString = templine[2];
-                String descString = templine[3];
-                defaultCal.addNewToCalendarObjList(username,
-                                                   new CalendarObject(templine[3],
-                                                                      templine[0],
-                                                                      templine[1],
-                                                                      templine[3]));
+                String objType    = templine[2];
+                String nameString = templine[3];
+                String descString = templine[4];
+                System.out.println("Object type:"+objType);
+                if (objType.equals("A")){
+                    defaultCal.addNewToCalendarObjList( username,
+                                                        new Assignment(nameString,
+                                                                       new Date(dateString),
+                                                                       new Time(timeString),
+                                                                       descString));
+                }
+
             }
             br.close();
         }catch (IOException e) {

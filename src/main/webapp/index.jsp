@@ -19,7 +19,7 @@
 <h1>Assignments</h1>
 <h4>Names:</h4>
     <c:forEach items="${assignments}" var="item">
-        -${item.getName()} ${item.getDate()}<br>
+        -${item.getName()}  <form action="editAssign" method="get"><input type="submit"  value="edit" name="${item.getName()}" /></form>
     </c:forEach>
 </body>
 </html>
