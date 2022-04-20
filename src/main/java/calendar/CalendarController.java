@@ -59,13 +59,18 @@ public class CalendarController {
                 String templine[] =  line.split(",");
                 String dateString = templine[0];
                 String timeString = templine[1];
-                String nameString = templine[2];
-                String descString = templine[3];
-                defaultCal.addNewToCalendarObjList(username,
-                                                   new CalendarObject(templine[2],
-                                                                      templine[0],
-                                                                      templine[1],
-                                                                      templine[3]));
+                String objType    = templine[2];
+                String nameString = templine[3];
+                String descString = templine[4];
+                System.out.println("Object type:"+objType);
+                if (objType.equals("A")){
+                    defaultCal.addNewToCalendarObjList( username,
+                                                        new Assignment(nameString,
+                                                                       new Date(dateString),
+                                                                       new Time(timeString),
+                                                                       descString));
+                }
+
             }
             br.close();
         }catch (IOException e) {

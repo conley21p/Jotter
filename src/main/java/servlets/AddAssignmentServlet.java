@@ -21,9 +21,7 @@ public class AddAssignmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuilder calendarObj = new StringBuilder();
         calendarObj.append(request.getParameter("name") + ",");
-        System.out.println("time" +request.getParameter("time") + "," );
         calendarObj.append(request.getParameter("date") + ",");
-        System.out.println(request.getParameter("date"));
         calendarObj.append(request.getParameter("time") + ",");
         calendarObj.append(request.getParameter("description") + ",");
         /*
