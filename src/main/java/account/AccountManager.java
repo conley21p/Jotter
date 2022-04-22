@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class AccountManager {
-    public static boolean makeAccount(String username, String password, String email) {
+    public static boolean createAccount(String username, String password, String email) {
         // creating new account directory
         String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
         File accountDirectory = new File(accountDirectoryPath);
@@ -16,7 +16,7 @@ public class AccountManager {
         System.out.println("Account " + username + " made? " + isSuccess);
 
         // creating new information file
-        File accountInfo = new File(accountDirectoryPath + "/" + username + "/accountInfo");
+        File accountInfo = new File(accountDirectoryPath + "/accountInfo");
         try {
             PrintWriter outfile = new PrintWriter(new FileWriter(accountInfo));
             outfile.print(username + "," + password + "," + email);
@@ -28,13 +28,22 @@ public class AccountManager {
         }
 
         // creating new calendar directory
-        File calendarsDirectory = new File(accountDirectoryPath + "/" + username + "/Calendars");
+        File calendarsDirectory = new File(accountDirectoryPath + "/Calendars");
         isSuccess = calendarsDirectory.mkdir();
         System.out.println("Account " + username + " calendars directory made? " + isSuccess);
 
         // TODO load user
 
-        // TODO create starter calendar
+        // creating starter calendar
+        try {
+            PrintWriter outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/School")));
+            outfile.write("");
+            outfile.close();
+        } catch (IOException e) {
+            System.out.println("Could not create starting calendar file.");
+            isSuccess = false;
+        }
+
 
         return isSuccess;
     }
@@ -44,11 +53,13 @@ public class AccountManager {
         String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
 
         // deleting account directory
-        File accountDirectory = new File(accountDirectoryPath + "/" + username);
+        File accountDirectory = new File(accountDirectoryPath);
         if (accountDirectory.isDirectory()) {
+            System.out.println("isDirectory");
             if (deleteDirectory(accountDirectory))
                 isSuccess = true;
         }
+
         System.out.println("Account " + username + " is deleted? " + isSuccess);
         return isSuccess;
     }

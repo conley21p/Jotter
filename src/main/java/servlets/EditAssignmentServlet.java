@@ -4,6 +4,7 @@ import java.util.Enumeration;
 import java.time.LocalDateTime;
 
 import calendar.Assignment;
+import User.UserController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -21,7 +22,7 @@ public class EditAssignmentServlet extends HttpServlet {
         String assignName = parameterNames.nextElement();
         //System.out.println("parameName"+assignName);
 
-        editingObject = (Assignment) HomePageServlet.user.getCurrCal().getCalendarObject(assignName);
+        editingObject = (Assignment) UserController.getCurCalendar().getCalendarObject(assignName);
 
         //Set attributes for edit assignment
         request.setAttribute("CalObj", editingObject);
@@ -52,7 +53,7 @@ public class EditAssignmentServlet extends HttpServlet {
                 Add a new assignmnet to the assignmnet list by sending HTTP request
              */
             editingObject.edit(calendarObj.toString());
-            editingObject.updateToDataBase(HomePageServlet.user.getUsername(), HomePageServlet.user.getCurrCal().getName());
+            editingObject.updateToDataBase(UserController.getUsername(), UserController.getCurCalendar().getName());
 
             /*
                 Send user to the page asking them is they want to add another or go to homepage
@@ -64,7 +65,7 @@ public class EditAssignmentServlet extends HttpServlet {
          */
             try{
                 System.out.println("Creating copy");
-                HomePageServlet.user.getCurrCal().addNewToCalendarObjList(HomePageServlet.user.getUsername(),
+                UserController.getCurCalendar().addNewToCalendarObjList(UserController.getUsername(),
                                                         new Assignment(calendarObj.toString()));
                 System.out.println("Created copy");
             } catch (Exception e){

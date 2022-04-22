@@ -1,5 +1,6 @@
 package servlets;
 
+import User.UserController;
 import calendar.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -28,7 +29,7 @@ public class AddAssignmentServlet extends HttpServlet {
             Add a new assignmnet to the assignmnet list by sending HTTP request
          */
         try{
-            HomePageServlet.user.getCurrCal().addNewToCalendarObjList(HomePageServlet.user.getUsername(),
+            UserController.getCurCalendar().addNewToCalendarObjList(UserController.getUsername(),
                                                                       new Assignment(calendarObj.toString()));
         } catch (Exception e){
             e.printStackTrace();

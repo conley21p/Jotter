@@ -1,6 +1,6 @@
 package servlets;
 
-import User.User;
+import User.UserController;
 import authenticator.LoginAuthenticator;
 import calendar.CalendarController;
 
@@ -29,11 +29,11 @@ public class LoginServlet extends HttpServlet {
 
         if (LoginAuthenticator.authenticate(username, password)) {
             System.out.println("Successfully logged in");
-            String[] calList    = CalendarController.getCalendarNameList(username);
-            HomePageServlet.user = new User(username,
-                                            calList,
-                                            CalendarController.getCalendar(username,calList[0]));
-            System.out.println(HomePageServlet.user.getCurrCal().getName() + " checking");
+            String[] calendarNameList = CalendarController.getCalendarNameList(username);
+
+            // load user into the controller
+            UserController.loadUser(username, calendarNameList, CalendarController.getCalendar(username,calendarNameList[0]));
+            System.out.println(UserController.getCurCalendar().getName() + " checking");
             System.out.println("send redirect**************");
             response.sendRedirect("/HomePageServlet");
             return;
