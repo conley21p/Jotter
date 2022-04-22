@@ -1,5 +1,7 @@
 package authenticator;
 
+import utils.PathFinder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -37,5 +39,11 @@ public class LoginAuthenticator {
         }
 
         return false;
+    }
+
+    public static boolean isAvailableUsername(String username) {
+        String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
+        File accountDirectory = new File(accountDirectoryPath);
+        return !(accountDirectory.isDirectory());
     }
 }

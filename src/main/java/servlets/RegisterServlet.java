@@ -41,7 +41,7 @@ public class RegisterServlet extends HttpServlet {
             if (AccountManager.createAccount(username, password, email)) {
                 System.out.println("Account creation succeeded.");
                 String[] calendarNameList = CalendarController.getCalendarNameList(username);
-                UserController.loadUser(username, calendarNameList, CalendarController.getCalendar(username, calendarNameList[0]));
+                UserController.loadUser(username, password, calendarNameList, CalendarController.getCalendar(username, calendarNameList[0]));
 
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // go to homepage with new account
             } else {

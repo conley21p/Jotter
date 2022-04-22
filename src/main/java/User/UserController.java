@@ -4,12 +4,14 @@ import calendar.Calendar;
 
 public class UserController {
     private static String username;
+    private static String password;
     private static String[] calendarNames;
     private static Calendar curCalendar;
 
-    public static void loadUser(String user, String[] calNames, Calendar curCal)
+    public static void loadUser(String user, String pass, String[] calNames, Calendar curCal)
     {
         username = user;
+        password = pass;
         calendarNames = calNames;
         curCalendar = curCal;
     }
@@ -25,6 +27,10 @@ public class UserController {
     }
 
     public static void setUsername(String user) { username = user; }
+
+    public static String getPassword() { return password; }
+
+    public static void setPassword(String pass) { password = pass; }
 
     public static String[] getCalendarNames() {
         return calendarNames;

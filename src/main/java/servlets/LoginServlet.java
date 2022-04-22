@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             String[] calendarNameList = CalendarController.getCalendarNameList(username);
 
             // load user into the controller
-            UserController.loadUser(username, calendarNameList, CalendarController.getCalendar(username,calendarNameList[0]));
+            UserController.loadUser(username, password, calendarNameList, CalendarController.getCalendar(username,calendarNameList[0]));
             System.out.println(UserController.getCurCalendar().getName() + " checking");
             System.out.println("send redirect**************");
             response.sendRedirect("/HomePageServlet");

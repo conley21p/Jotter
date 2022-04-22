@@ -12,7 +12,7 @@ public class PathFinder {
 
     public static String getAccountInformationPath(String username) {
         String userDirectoryPath = getAccountDirectoryPath(username);
-        return userDirectoryPath + "/" + username;
+        return userDirectoryPath + "/accountInfo";
     }
 
     public static String getAccountCalendarsPath(String username) {
@@ -20,7 +20,7 @@ public class PathFinder {
         return userDirectoryPath + "/" + username;
     }
 
-    private static String getJotterPath() {
+    public static String getJotterPath() {
         ClassLoader loader = PathFinder.class.getClassLoader();
         String tempPath = loader.getResource("utils/PathFinder.class").toString();
         return tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
