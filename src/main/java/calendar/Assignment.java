@@ -3,14 +3,15 @@ package calendar;
 public class Assignment extends CalendarObject{
     private String completed;
 
+    //  Used When adding new assignmnet, so it is okay to assume assignment is not completed
     public Assignment(String obj) {
         super(obj);
         this.completed = "null";
     }
 
-    public Assignment(String name, Date date, Time time, String description) {
+    public Assignment(String name, Date date, Time time, String description, String status) {
         super(name, date, time, description);
-        this.completed = "null";
+        this.completed = status;
     }
 
     @Override

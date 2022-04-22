@@ -14,12 +14,10 @@
 <form action="editAssign" method="post">
     <h4>Name:*</h4><label>
     <input type="text" name="name" value="${CalObj.getName()}"/>
-    <%--
 </label>
     <h4>Due Date:*</h4><label>
-    <input type="date" name="date" value="${CalObj.getDate()}" pattern="yyyy-m-dd"/>
+    <input type="date" name="date" value="${CalObj.getDate().toString()}" pattern="yyyy-m-dd"/>
 </label>
-    --%>
     <h4>Due Time:*</h4><label>
     <input type="time" name="time" value="${CalObj.getTime()}"/>
 </label>
@@ -28,9 +26,9 @@
 </label>
 </label>
     <h4>Completed:</h4><label>
-    <input type="checkbox" name="status" id="status" value="completed" ${CalObj.getCompleted()!= "null" ? 'checked' : ''}>
+    <input type="checkbox" name="status" id="status" value="completed" ${CalObj.getCompleted()!= "null" ? 'checked' : 'unchecked'}>
 </label>
-    <h4></h4><input type="submit" />
+    <h4></h4><input type="submit" name="button" value="update" /><input type="submit" name="button", value="Create Copy"/>
 </form>
 
 </body>

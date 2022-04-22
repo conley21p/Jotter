@@ -1,7 +1,7 @@
 package servlets;
 
 import User.User;
-import calendar.Calendar;
+//import calendar.Calendar;
 import calendar.CalendarController;
 
 import javax.servlet.*;
@@ -16,9 +16,9 @@ public class HomePageServlet extends HttpServlet {
             -calendarController is basically the live database
      */
     //  Default auto load already created class
-    public static User user = new User("con",
-            CalendarController.getCalendarNameList("con"),
-            CalendarController.getCalendar("con","School"));
+    public static User user = new User("conley",
+            CalendarController.getCalendarNameList("conley"),
+            CalendarController.getCalendar("conley","School"));
 //    public static User user = new User();
 
     @Override
@@ -26,7 +26,7 @@ public class HomePageServlet extends HttpServlet {
         request.setAttribute("assignments", user.getCurrCal().getCalendarObjList());
         request.setAttribute("size",        user.getCurrCal().getCalendarObjList().size());
         request.setAttribute("calName",     user.getCurrCal().getName());
-        System.out.println("CalName:" + user.getCurrCal().getName()+ "\n");
+        //System.out.println("CalName:" + user.getCurrCal().getName()+ "\n");
 
 
         /*

@@ -8,7 +8,7 @@ public class Date {
 
     //  String date format needs to be mm/dd/yyyy
     public Date(String date){
-        System.out.println("Date constructor param:"+date);
+        //System.out.println("Date constructor param:"+date);
         String temp[] = date.split("-");
 
         this.year   = Integer.parseInt(temp[0]);
@@ -30,8 +30,16 @@ public class Date {
 
     @Override
     public String toString() {
-        System.out.println("year for date is:"+ this.year);
-        return this.year + "-" + this.month + "-" + this.day;
+        //System.out.println("year for date is:"+ this.year);
+        StringBuilder result = new StringBuilder(this.year + "-" + this.month + "-" + this.day);
+        if (this.month < 10){
+            result = new StringBuilder(this.year + "-0" + this.month + "-" + this.day);
+        }
+        if (this.day < 10){
+            result.setCharAt(result.length()-1,'0');
+            result.append(this.day);
+        }
+        return result.toString();
     }
 
     /*

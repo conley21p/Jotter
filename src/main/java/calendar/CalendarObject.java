@@ -17,7 +17,7 @@ public class CalendarObject {
                -    Spaces are optional
      */
     public CalendarObject(String obj){
-        System.out.println("Stringobj:"+obj);
+        //System.out.println("Stringobj:"+obj);
         String temp[] = obj.split(",");
         this.name       = temp[0];
         this.date       = new Date(temp[1]);
@@ -72,7 +72,7 @@ public class CalendarObject {
 
                     String templine[] =  line.split(",");
                     Date tempDate = new Date(templine[0]);
-                    System.out.println("Date to string is:" + tempDate.toString());
+                    //System.out.println("Date to string is:" + tempDate.toString());
                     if (this.date.compare(tempDate) < 0 && addedFlag){
                         pw.println(this.toString());
                         addedFlag = false;
@@ -139,7 +139,7 @@ public class CalendarObject {
                 do{
                     String templine[] =  line.split(",");
                     Date tempDate = new Date(templine[0]);
-                    System.out.println("Date to string is:" + tempDate.toString());
+                    //System.out.println("Date to string is:" + tempDate.toString());
                     if (this.date.compare(tempDate) == 0 && addedFlag){
                         pw.println(this.toString());
                         addedFlag = false;

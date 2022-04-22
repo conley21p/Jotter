@@ -8,6 +8,7 @@ public class CalendarController {
 
     public static String[] getCalendarNameList(String username){
         ClassLoader loader = AccountManager.class.getClassLoader();
+
         String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/";
@@ -19,16 +20,19 @@ public class CalendarController {
         // Will store list of calendars
         String[] calNames = new String[5];
         int count = 0;
-
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                System.out.println("File " + listOfFiles[i].getName());
-                calNames[count++] = listOfFiles[i].getName();
-            } else if (listOfFiles[i].isDirectory()) {
-                System.out.println("Directory " + listOfFiles[i].getName());
+        try{
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    System.out.println("File " + listOfFiles[i].getName());
+                    calNames[count++] = listOfFiles[i].getName();
+                } else if (listOfFiles[i].isDirectory()) {
+                    System.out.println("Directory " + listOfFiles[i].getName());
+                }
             }
+        }catch (NullPointerException e){
+            System.out.println("List of all files NUll pointer error");
         }
-        System.out.println("Return calender names list is " + calNames.toString());
+        //System.out.println("Return calender names list is " + calNames.toString());
         return calNames;
     }
 
@@ -62,13 +66,15 @@ public class CalendarController {
                 String objType    = templine[2];
                 String nameString = templine[3];
                 String descString = templine[4];
-                System.out.println("Object type:"+objType);
+                //System.out.println("Object type:"+objType);
                 if (objType.equals("A")){
+                    String status = templine[5];
                     defaultCal.addNewToCalendarObjList( username,
                                                         new Assignment(nameString,
                                                                        new Date(dateString),
                                                                        new Time(timeString),
-                                                                       descString));
+                                                                       descString,
+                                                                       status));
                 }
 
             }

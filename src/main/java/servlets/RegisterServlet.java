@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
                 HomePageServlet.user = new User(username,
                                                 calList,
                                                 CalendarController.getCalendar(username,calList[0]));
-                System.out.println("CalName:" + HomePageServlet.user.getCurrCal().getName()+ "\n");
+                //System.out.println("CalName:" + HomePageServlet.user.getCurrCal().getName()+ "\n");
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // return to register page
                 //response.sendRedirect("/HomePageServlet");
                 //getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // go to homepage
