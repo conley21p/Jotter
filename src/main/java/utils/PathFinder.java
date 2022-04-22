@@ -3,38 +3,24 @@ package utils;
 import java.io.File;
 
 public class PathFinder {
-    public String findUserDirectory(String username) {
+    public static String getAccountDirectoryPath(String username) {
         String jotterPath = getJotterPath();
         String userDirectoryPath = jotterPath + "/src/main/java/account/accounts/" + username;
-        System.out.println("Jotter:: " + jotterPath);
-        System.out.println("User:: " + userDirectoryPath);
-
-        File userDirectory = new File(userDirectoryPath);
-        if (userDirectory.isDirectory()) {
-            return userDirectoryPath;
-        }
-        return null;
+        System.out.println("userDirectoryPath: " + userDirectoryPath);
+        return userDirectoryPath;
     }
 
-    public String findUserInformation(String username) {
-        String userDirectoryPath = findUserDirectory(username);
-        if (userDirectoryPath != null) {
-            System.out.println("findUserCalendars(" + username + ") = " + userDirectoryPath + "/" + username);
+    public static String getAccountInformationPath(String username) {
+        String userDirectoryPath = getAccountDirectoryPath(username);
         return userDirectoryPath + "/" + username;
-        }
-        return null;
     }
 
-    public String findUserCalendars(String username) {
-        String userDirectoryPath = findUserDirectory(username);
-        if (userDirectoryPath != null) {
-            System.out.println("findUserCalendars(" + username + ") = " + userDirectoryPath + "/calendars");
-            return userDirectoryPath + "/" + username;
-        }
-        return null;
+    public static String getAccountCalendarsPath(String username) {
+        String userDirectoryPath = getAccountDirectoryPath(username);
+        return userDirectoryPath + "/" + username;
     }
 
-    private String getJotterPath() {
+    private static String getJotterPath() {
         ClassLoader loader = PathFinder.class.getClassLoader();
         String tempPath = loader.getResource("utils/PathFinder.class").toString();
         return tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
