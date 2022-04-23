@@ -44,7 +44,7 @@ public class UserController {
         return curCalendar;
     }
 
-    public void setCurCalendar(Calendar calendar) {
+    public static void setCurCalendar(Calendar calendar) {
         curCalendar = calendar;
     }
 }

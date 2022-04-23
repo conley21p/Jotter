@@ -34,13 +34,16 @@ public class AccountManager {
         isSuccess = calendarsDirectory.mkdir();
         System.out.println("Account " + username + " calendars directory made? " + isSuccess);
 
-        // creating starter calendar
+        // creating starter calendar and deleted item calendar
         try {
             PrintWriter outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/School")));
             outfile.write("");
             outfile.close();
+            outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/DELETED_ITEMS")));
+            outfile.write("");
+            outfile.close();
         } catch (IOException e) {
-            System.out.println("Could not create starting calendar file.");
+            System.out.println("Could not create starting calendar and deleted items file.");
             isSuccess = false;
         }
 
@@ -73,6 +76,7 @@ public class AccountManager {
             PrintWriter outfile = new PrintWriter(new FileWriter(accountInfoFile));
             outfile.println(contents);
             outfile.close();
+            UserController.setPassword(newPassword);
         }
         catch (IOException e) {
             isSuccess = false;

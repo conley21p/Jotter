@@ -35,7 +35,6 @@ public class ProfileServlet extends HttpServlet {
             if (AccountManager.changePassword(newPassword)) {
                 System.out.println("Changed password to " + newPassword);
                 message = "Password change successful.";
-                UserController.setPassword(newPassword);
             }
             else {
                 message = "Could not change password.";
