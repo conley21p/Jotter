@@ -13,8 +13,9 @@
 <body>
 <form action="FileServlet" method="post">
     <h4>Upload a file: </h4>
-    <input type="file" id = "file" name="file" accept="image/jpeg" required/>
+    <input type="file" id = "file" name="file" accept="image/jpeg, image/png, image,jpg" required/>
 
+    <div id="display_image"></div>
     </label>
     <h4></h4><input type="submit" />
 </form>
