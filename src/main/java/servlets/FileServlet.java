@@ -31,22 +31,6 @@ public class FileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        File image = new File(request.getParameter("image"));
-        BufferedImage bufferedImage = ImageIO.read(image);
-
-        ImageIcon imageIcon = new ImageIcon(bufferedImage);
-        JFrame jFrame = new JFrame();
-
-        jFrame.setLayout(new FlowLayout());
-
-        jFrame.setSize(1024, 1024);
-        JLabel jLabel = new JLabel();
-
-        jLabel.setIcon(imageIcon);
-        jFrame.add(jLabel);
-        jFrame.setVisible(true);
-
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //response.sendRedirect("HomePageServlet");
+        response.sendRedirect("HomePageServlet");
     }
 }
