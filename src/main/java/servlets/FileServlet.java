@@ -39,7 +39,7 @@ public class FileServlet extends HttpServlet {
 
         jFrame.setLayout(new FlowLayout());
 
-        jFrame.setSize(500, 500);
+        jFrame.setSize(1024, 1024);
         JLabel jLabel = new JLabel();
 
         jLabel.setIcon(imageIcon);
