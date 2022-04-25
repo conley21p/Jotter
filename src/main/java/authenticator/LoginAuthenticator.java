@@ -9,9 +9,9 @@ public class LoginAuthenticator {
         // getting the right file path
         ClassLoader loader = LoginAuthenticator.class.getClassLoader();
         String tempPath = loader.getResource("authenticator/LoginAuthenticator.class").toString();
-        System.out.println("Test" + tempPath);
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-
+        //For Jacob's use
+        jotterPath = "C:/Users/Jacob\\ Radtke/IdeaProjects/Jotter";
         String accountsPath =  jotterPath + "/src/main/java/account/accounts";
         System.out.println("Jotter:: " + jotterPath);
         System.out.println("Accounts:: " + accountsPath);
