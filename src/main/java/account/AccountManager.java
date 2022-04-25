@@ -14,6 +14,8 @@ public class AccountManager {
         String tempPath = loader.getResource("account/AccountManager.class").toString();
 
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+        //For Jacob's use
+        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
         String accountsPath = jotterPath + "/src/main/java/account/accounts";
         System.out.println("Jotter:: " + jotterPath);
         System.out.println("Accounts:: " + accountsPath);
