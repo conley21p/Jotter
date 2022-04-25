@@ -19,17 +19,21 @@ public class AddAssignmentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StringBuilder calendarObj = new StringBuilder();
-        calendarObj.append(request.getParameter("name") + ",");
-        calendarObj.append(request.getParameter("date") + ",");
-        calendarObj.append(request.getParameter("time") + ",");
-        calendarObj.append(request.getParameter("description") + ",");
+
+        String name = request.getParameter("name");
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String desc = request.getParameter("description");
         /*
             Add a new assignmnet to the assignmnet list by sending HTTP request
          */
         try{
             HomePageServlet.user.getCurrCal().addNewToCalendarObjList(HomePageServlet.user.getUsername(),
-                                                                      new Assignment(calendarObj.toString()));
+                                                                      new Assignment(name,
+                                                                                     new Date(date),
+                                                                                     new Time(time),
+                                                                                     desc,
+                                                                                     "null"));
         } catch (Exception e){
             e.printStackTrace();
         }
