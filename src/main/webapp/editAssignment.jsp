@@ -28,7 +28,10 @@
     <h4>Completed:</h4><label>
     <input type="checkbox" name="status" id="status" value="completed" ${CalObj.getCompleted()!= "null" ? 'checked' : 'unchecked'}>
 </label>
-    <h4></h4><input type="submit" name="button" value="update" /><input type="submit" name="button", value="Create Copy"/>
+    <h4></h4><input type="submit" name="button" value="Update" />
+    <input type="submit" name="button", value="Create Copy"/>
+    <input type="submit" name="button", value="Delete"/>
+    <input type="submit" name="button", value="Return To Home Page"/>
 </form>
 
 </body>
