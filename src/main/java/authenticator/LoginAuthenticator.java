@@ -22,11 +22,9 @@ public class LoginAuthenticator {
         System.out.println("test:" + userAccountInfoPath);
         if (userFile.exists()) {
             try {
-                System.out.println("Test");
                 Scanner scan = new Scanner(userFile);
                 String userInfo = scan.nextLine();
                 String segments[] = userInfo.split(",");
-                System.out.println(userInfo);
                 if (segments[1].equals(pass)) {
                     return true;
                 }
