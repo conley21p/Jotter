@@ -4,13 +4,13 @@ public class Assignment extends CalendarObject{
     private String completed;
 
     //  Used When adding new assignmnet, so it is okay to assume assignment is not completed
-    public Assignment(String obj) {
-        super(obj);
-        this.completed = "null";
-    }
-
-    public Assignment(String name, Date date, Time time, String description, String status) {
+    public Assignment(String name,
+                      Date date,
+                      Time time,
+                      String description,
+                      String status) {
         super(name, date, time, description);
+        status.replace(","," ");
         this.completed = status;
     }
 
@@ -25,12 +25,16 @@ public class Assignment extends CalendarObject{
     }
 
     @Override
-    public void edit(String updatedString) {
-        super.edit(updatedString);
-        String[] attrs = updatedString.split(",");
-        if (attrs.length >= 4){
-            this.setCompleted(attrs[4]);
-        }
+    public void edit(String name,
+                     Date date,
+                     Time time,
+                     String description,
+                     String status) {
+        super.edit(name,
+                    date,
+                    time,
+                    description);
+        this.setCompleted(status);
     }
 
     /*

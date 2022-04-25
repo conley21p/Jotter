@@ -4,36 +4,19 @@ import account.AccountManager;
 
 import java.io.*;
 
-public class CalendarObject {
+public abstract class CalendarObject {
     private String name;
     private Date date;
     private Time time;
     private String description;
 
-    /*
-      Main Constructor
-       String format needs to be:
-            "name:name, date:date, time:time, desc:description"
-               -    Spaces are optional
-     */
-    public CalendarObject(String obj){
-        //System.out.println("Stringobj:"+obj);
-        String temp[] = obj.split(",");
-        this.name       = temp[0];
-        this.date       = new Date(temp[1]);
-        if (!temp[2].isEmpty()){
-            this.time       = new Time(temp[2]);
-        }
-        if (temp.length > 3){
-            this.description= temp[3];
-        }
-    }
-
-    //  Overloaded constructor
+        //  constructor
     public CalendarObject(String name,
                           Date date,
                           Time time,
                           String description){
+        name.replace(","," ");
+        description.replace(","," ");
         this.name           = name;
         this.date           = date;
         this.time           = time;
@@ -100,22 +83,25 @@ public class CalendarObject {
     /*
      *  This method is used to save calendar object to database
      */
-    public void edit(String updatedString){
+    public void edit(String name,
+                     Date date,
+                     Time time,
+                     String description){
+        name.replace(","," ");
+        description.replace(","," ");
         //  ParseUpdated string
-        String[] attrs = updatedString.split(",");
-        if (!this.name.equals(attrs[0])){
-            this.setName(attrs[0]);
+        if (!this.name.equals(name)){
+            this.setName(name);
         }
-//        if  (!this.date.equals(attrs[1])){
-//            this.setDate(new Date(attrs[1]));
-//        }
-        if (!this.time.equals(attrs[2])){
-            this.setTime(new Time(attrs[2]));
+        if  (!this.date.equals(date)){
+            this.setDate(date);
         }
-        if (!this.description.equals(attrs[3])){
-            this.setDescription(attrs[3]);
+        if (!this.time.equals(time)){
+            this.setTime(time);
         }
-        //Update database
+        if (!this.description.equals(description)){
+            this.setDescription(description);
+        }
     }
     /*
      *  This method is used to save calendar object to database
@@ -203,4 +189,10 @@ public class CalendarObject {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public abstract void edit(String name,
+                              Date date,
+                              Time time,
+                              String description,
+                              String status);
 }
