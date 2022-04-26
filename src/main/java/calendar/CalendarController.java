@@ -41,6 +41,8 @@ public class CalendarController {
         ClassLoader loader = AccountManager.class.getClassLoader();
         String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+        //For Jacob's use
+        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + defaultName + "/";
 
         // Open Calender object is in
