@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -20,7 +19,6 @@
 <h4>Names:</h4>
     <c:forEach items="${assignments}" var="item">
         -${item.getName()}  <form action="editAssign" method="get"><input type="submit"  value="View/Edit" name="${item.getName()}" /></form>
-        <a href="/FileServlet">File</a><br> //takes to file page
     </c:forEach>
 </body>
 </html>
