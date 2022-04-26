@@ -20,7 +20,7 @@
 <h4>Names:</h4>
     <c:forEach items="${assignments}" var="item">
         -${item.getName()}  <form action="editAssign" method="get"><input type="submit"  value="View/Edit" name="${item.getName()}" /></form>
-        <a href="/FileServlet">File</a><br>
+        <a href="/FileServlet">File</a><br> //takes to file page
     </c:forEach>
 </body>
 </html>
