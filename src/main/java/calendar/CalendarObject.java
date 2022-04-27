@@ -18,6 +18,7 @@ public abstract class CalendarObject {
                           String course){
         name.replace(","," ");
         description.replace(","," ");
+        course.replace(",", " ");
         this.name           = name;
         this.date           = date;
         this.time           = time;
@@ -96,6 +97,7 @@ public abstract class CalendarObject {
                      String course){
         name.replace(","," ");
         description.replace(","," ");
+        course.replace(","," ");
         //  ParseUpdated string
         if (!this.name.equals(name)){
             this.setName(name);
@@ -121,6 +123,8 @@ public abstract class CalendarObject {
         ClassLoader loader = AccountManager.class.getClassLoader();
         String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+        //For Jacob's use
+        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
 
         // Open Calender object is in
