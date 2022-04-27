@@ -42,6 +42,7 @@ public class EditAssignmentServlet extends HttpServlet {
         String date = request.getParameter("date");
         String time = request.getParameter("time");
         String desc = request.getParameter("description");
+        String cour = request.getParameter("course");
         String status;
 
         System.out.println("button Flag" + request.getParameter("button") + ".");
@@ -86,6 +87,7 @@ public class EditAssignmentServlet extends HttpServlet {
                                                                                         new Date(date),
                                                                                         new Time(time),
                                                                                         desc,
+                                                                                        cour,
                                                                                         "null"));
             } catch (Exception e) {
                 e.printStackTrace();

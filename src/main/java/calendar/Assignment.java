@@ -8,8 +8,9 @@ public class Assignment extends CalendarObject{
                       Date date,
                       Time time,
                       String description,
+                      String course,
                       String status) {
-        super(name, date, time, description);
+        super(name, date, time, description, course);
         status.replace(","," ");
         this.completed = status;
     }
@@ -29,11 +30,13 @@ public class Assignment extends CalendarObject{
                      Date date,
                      Time time,
                      String description,
+                     String course,
                      String status) {
         super.edit(name,
                     date,
                     time,
-                    description);
+                    description,
+                    course);
         this.setCompleted(status);
     }
 
