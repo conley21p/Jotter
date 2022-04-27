@@ -61,6 +61,7 @@ public class EditAssignmentServlet extends HttpServlet {
                                 new Date(date),
                                 new Time(time),
                                 desc,
+                                cour,
                                 status);
             editingObject.updateToDataBase(HomePageServlet.user.getUsername(), HomePageServlet.user.getCurrCal().getName());
 
