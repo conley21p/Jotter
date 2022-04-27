@@ -6,7 +6,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
 public class ProfileServlet extends HttpServlet {
@@ -38,7 +40,13 @@ public class ProfileServlet extends HttpServlet {
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
 
-                File file = new File(accountsPath);
+                File newCal = new File(accountsPath);
+                try{
+                    PrintWriter outfile = new PrintWriter(new FileWriter(newCal));
+                    outfile.close();
+                }catch (IOException e){
+                    System.out.println("Error creating new calendar");
+                }
             }
         }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
