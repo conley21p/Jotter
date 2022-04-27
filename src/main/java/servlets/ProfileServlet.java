@@ -20,16 +20,17 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //check what form was submitted
-        if(request.getParameter("decision") != null)
-        {
-            String decision = request.getParameter("decision");
-            if (decision.equals("deleteAccount")) {
+        //if(request.getParameter("decision") != null)
+        //{
+          //  String decision = request.getParameter("decision");
+           // if (decision.equals("deleteAccount")) {
 //            if (AccountManager.deleteAccount(UserController.getUser())) {
 //                System.out.println("account " + UserController.getUser() + "deleted with UserController");
 //                UserController.logoff();
 //            }
-            }
-        } else if (request.getParameter("import") != null)
+          //  }
+        //} else
+            if (request.getParameter("import") != null)
         {
             if (request.getParameter("file") != null)
             {
