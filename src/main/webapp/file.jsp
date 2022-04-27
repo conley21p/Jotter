@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-    <title>Upload File</title>
+    <title>Upload Calendar File</title>
 </head>
 <body>
 <form action="profile.jsp" method="post" enctype="multipart/form-data">

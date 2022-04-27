@@ -33,7 +33,7 @@
 
 
 </form>
-<a href="/FileServlet">File</a><br>
+<a href="/ImportCalendarServlet">Import a Calendar</a><br>
 
 </body>
 </html>
