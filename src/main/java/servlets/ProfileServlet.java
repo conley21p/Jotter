@@ -33,7 +33,7 @@ public class ProfileServlet extends HttpServlet {
                 //For Jacob's use
                 jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
                 //need to figure out how to generalize username
-                String accountsPath = jotterPath + "/src/main/java/account/accounts" + "jacob" + "/Calendars/" +  request.getParameter(("file"));
+                String accountsPath = jotterPath + "/src/main/java/account/accounts/" + "jacob" + "/Calendars/" +  request.getParameter(("file"));
                 System.out.println("Jotter:: " + jotterPath);
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
