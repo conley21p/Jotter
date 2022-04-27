@@ -24,6 +24,10 @@ public class ProfileServlet extends HttpServlet {
 //            }
         } else if ("import".equals(decision))
         {
+            if (request.getParameter("file") != null)
+            {
+                System.out.println("Test2");
+            }
          System.out.println("Test");
         }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
