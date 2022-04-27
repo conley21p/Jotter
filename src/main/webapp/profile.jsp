@@ -38,7 +38,7 @@
     <%--Code for import--%>
     <h4>Upload a file: </h4>
     <input type="file" id = "file" name="file" accept="file/txt" required/>
-    <button type="submit" name="decision" value="import">Import</button>
+    <button type="submit" name="import" value="import">Import</button>
 </form>
 
 </body>

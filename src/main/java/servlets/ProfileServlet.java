@@ -22,7 +22,7 @@ public class ProfileServlet extends HttpServlet {
 //                System.out.println("account " + UserController.getUser() + "deleted with UserController");
 //                UserController.logoff();
 //            }
-        } else if (decision.equals("import"))
+        } else if (request.getParameter("import") != null)
         {
          System.out.println("Test");
         }
