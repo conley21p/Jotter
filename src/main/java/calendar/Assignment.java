@@ -22,6 +22,7 @@ public class Assignment extends CalendarObject{
                 "A," +
                 this.getName() + "," +
                 this.getDescription() + "," +
+                this.getCourse() + "," +
                 this.getCompleted();
     }
 
