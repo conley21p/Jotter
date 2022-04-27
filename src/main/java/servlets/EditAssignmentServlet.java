@@ -4,7 +4,9 @@ import java.util.Enumeration;
 import java.time.LocalDateTime;
 
 import calendar.Assignment;
-import User.UserController;
+import calendar.CalendarController;
+import calendar.Date;
+import calendar.Time;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,7 +24,7 @@ public class EditAssignmentServlet extends HttpServlet {
         String assignName = parameterNames.nextElement();
         //System.out.println("parameName"+assignName);
 
-        editingObject = (Assignment) UserController.getCurCalendar().getCalendarObject(assignName);
+        editingObject = (Assignment) HomePageServlet.user.getCurrCal().getCalendarObject(assignName);
 
         //Set attributes for edit assignment
         request.setAttribute("CalObj", editingObject);
@@ -36,45 +38,69 @@ public class EditAssignmentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         StringBuilder calendarObj = new StringBuilder();
-        calendarObj.append(request.getParameter("name") + ",");
-        calendarObj.append(request.getParameter("date") + ",");
-        calendarObj.append(request.getParameter("time") + ",");
-        calendarObj.append(request.getParameter("description") + ",");
+        String name = request.getParameter("name");
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String desc = request.getParameter("description");
+        String status;
 
-        if (request.getParameter("button") == "update") {
+        System.out.println("button Flag" + request.getParameter("button") + ".");
+        if (request.getParameter("button").compareTo("Update") == 0) {
             if (request.getParameter("status") == null) {
-                calendarObj.append("null");
+                status = "null";
             } else {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/MM/dd HH:mm");
                 System.out.println("Completed date:" + dtf.format(LocalDateTime.now()));
-                calendarObj.append(dtf.format(LocalDateTime.now()));
+                status = dtf.format(LocalDateTime.now());
             }
             /*
                 Add a new assignmnet to the assignmnet list by sending HTTP request
              */
-            editingObject.edit(calendarObj.toString());
-            editingObject.updateToDataBase(UserController.getUsername(), UserController.getCurCalendar().getName());
+            editingObject.edit( name,
+                                new Date(date),
+                                new Time(time),
+                                desc,
+                                status);
+            editingObject.updateToDataBase(HomePageServlet.user.getUsername(), HomePageServlet.user.getCurrCal().getName());
 
             /*
                 Send user to the page asking them is they want to add another or go to homepage
              */
             response.sendRedirect("HomePageServlet");
-        }else{
+        } else if (request.getParameter("button").compareTo("Delete") == 0) {
+            int index = HomePageServlet.user.getCurrCal().getCalendarObjList().indexOf(editingObject);
+            System.out.println("Index of deleting object is:" + index);
+            //  Delete Object from the list
+            CalendarController.deleteCalendarObject(index);
+            response.sendRedirect("HomePageServlet");
+            return;
+
+        } else if (request.getParameter("button").compareTo("Create Copy") == 0) {
             /*
             Add a new assignmnet to the assignmnet list by sending HTTP request
          */
-            try{
-                System.out.println("Creating copy");
-                UserController.getCurCalendar().addNewToCalendarObjList(UserController.getUsername(),
-                                                        new Assignment(calendarObj.toString()));
-                System.out.println("Created copy");
-            } catch (Exception e){
+            try {
+//                System.out.println("Creating copy");
+                HomePageServlet.user.getCurrCal().addNewToCalendarObjList(HomePageServlet.user.getUsername(),
+                                                                          new Assignment(name,
+                                                                                        new Date(date),
+                                                                                        new Time(time),
+                                                                                        desc,
+                                                                                        "null"));
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         /*
             Send user to the page asking them is they want to add another or go to homepage
          */
             response.sendRedirect("AddAssignmentAfterSubmissionServlet");
+            return;
+        }else if(request.getParameter("button").compareTo("Return To Home Page") == 0){
+            response.sendRedirect("HomePageServlet");
+            return;
+        }else{
+            System.err.println("Error:No button was selected on the edit page.");
         }
     }
+
 }

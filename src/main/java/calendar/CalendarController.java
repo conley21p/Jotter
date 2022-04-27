@@ -1,6 +1,7 @@
 package calendar;
 
 import account.AccountManager;
+import servlets.HomePageServlet;
 
 import java.io.*;
 
@@ -85,4 +86,56 @@ public class CalendarController {
         return defaultCal;
     }
 
+    public static void deleteCalendarObject(int index){
+        CalendarObject deleted = HomePageServlet.user.getCurrCal().deleteCalendarObjectList(index);
+
+        //  Delete Object from the data base
+        ClassLoader loader = AccountManager.class.getClassLoader();
+        String tempPath = loader.getResource("account/AccountManager.class").toString();
+        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + HomePageServlet.user.getUsername() + "/Calendars/" + HomePageServlet.user.getCurrCal().getName() + "/";
+        // Open Calender object is in
+        try {
+            File file = new File(accountsPath);
+            File temp = File.createTempFile("temp-file-name", ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            PrintWriter pw = new PrintWriter(new FileWriter(temp));
+            String line;
+            boolean flag = true;
+            if((line = br.readLine()) != null){
+                do{
+                    flag = true;
+                    String templine[] =  line.split(",");
+                    Date tempDate = new Date(templine[0]);
+                    Time tempTime = new Time(templine[1]);
+                    //System.out.println("Date to string is:" + tempDate.toString());
+                    if (deleted.getDate().compare(tempDate) == 0
+                    &&  deleted.getTime().toString().compareTo(tempTime.toString()) == 0
+                    &&  deleted.getName().compareTo(templine[3]) == 0
+                    &&  deleted.getDescription().compareTo(templine[4])== 0){
+                        if (templine[2].compareTo("A") ==0){
+                            if (((Assignment)deleted).getCompleted().compareTo(templine[5]) ==0){
+                                //  All attributes match so delete line
+                                flag = false;
+                            }
+                        }
+                    }
+                    if(flag) {
+                        //  Print the last read line
+                        pw.println(line);
+                    }
+
+                }while((line = br.readLine()) != null);
+            }else{
+                System.out.println("db is empty\n");
+            }
+            br.close();
+            pw.close();
+            file.delete();
+            temp.renameTo(file);
+        }catch (IOException e) {
+            System.out.println("Problem saving assignment to database");
+            //return false;
+        }
+    }
 }
