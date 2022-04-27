@@ -11,13 +11,11 @@
     <title>Upload File</title>
 </head>
 <body>
-<form action="FileServlet" method="post">
+<form action="profile.jsp" method="post" enctype="multipart/form-data">
+    <%--Code for import--%>
     <h4>Upload a file: </h4>
-    <input type="file" id = "file" name="file" accept="image/jpeg, image/png, image,jpg" required/>
-
-    <div id="display_image"></div>
-    </label>
-    <h4></h4><input type="submit" />
+    <input type="file" id = "file" name="file" accept="file/txt" required/>
+    <button type="submit" name="import" value="import">Import</button>
 </form>
 </body>
 </html>

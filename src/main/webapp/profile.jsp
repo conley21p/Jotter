@@ -33,13 +33,7 @@
 
 
 </form>
-
-<form action="profile.jsp" method="post" enctype="multipart/form-data">
-    <%--Code for import--%>
-<h4>Upload a file: </h4>
-<input type="file" id = "file" name="file" accept="file/txt" required/>
-<button type="submit" name="import" value="import">Import</button>
-</form>
+<a href="/FileServlet">File</a><br>
 
 </body>
 </html>

@@ -19,42 +19,12 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //check what form was submitted
-        //if(request.getParameter("decision") != null)
-        //{
-          //  String decision = request.getParameter("decision");
-           // if (decision.equals("deleteAccount")) {
-//            if (AccountManager.deleteAccount(UserController.getUser())) {
-//                System.out.println("account " + UserController.getUser() + "deleted with UserController");
-//                UserController.logoff();
-//            }
-          //  }
-        //} else
-            if (request.getParameter("import") != null)
-        {
-            if (request.getParameter("file") != null)
-            {
-                ClassLoader loader = AccountManager.class.getClassLoader();
-                String tempPath = loader.getResource("account/AccountManager.class").toString();
-                String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-                //For Jacob's use
-                jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
-                //need to figure out how to generalize username
-                String accountsPath = jotterPath + "/src/main/java/account/accounts/" + "jacob" + "/Calendars/";
-                System.out.println("Jotter:: " + jotterPath);
-                System.out.println("Accounts:: " + accountsPath);
-                System.out.println(request.getParameter("file"));
-
-                //String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
-                File uploadDir = new File(accountsPath);
-                if (!uploadDir.exists()) uploadDir.mkdir();
-
-                for (Part part : request.getParts()) {
-                    String fileName = part.getSubmittedFileName();
-                    part.write(accountsPath + File.separator + fileName);
-                }
+        String decision = request.getParameter("decision");
+        if (decision.equals("deleteAccount")) {
+        //    if (AccountManager.deleteAccount(UserController.getUser())) {
+        //        System.out.println("account " + UserController.getUser() + "deleted with UserController");
+        //        UserController.logoff();
             }
-        }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
     }
 }
