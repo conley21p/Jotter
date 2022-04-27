@@ -19,13 +19,17 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String decision = request.getParameter("decision");
-        if (decision.equals("deleteAccount")) {
+        //check what form was submitted
+        if(request.getParameter("decision") != null)
+        {
+            String decision = request.getParameter("decision");
+            if (decision.equals("deleteAccount")) {
 //            if (AccountManager.deleteAccount(UserController.getUser())) {
 //                System.out.println("account " + UserController.getUser() + "deleted with UserController");
 //                UserController.logoff();
 //            }
-        } else if ("import".equals(decision))
+            }
+        } else if (request.getParameter("import") != null)
         {
             if (request.getParameter("file") != null)
             {
@@ -40,9 +44,12 @@ public class ProfileServlet extends HttpServlet {
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
 
+                //String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+                File uploadDir = new File(accountsPath);
+                if (!uploadDir.exists()) uploadDir.mkdir();
 
                 for (Part part : request.getParts()) {
-                    String fileName = part.getSubmittedFileName();;
+                    String fileName = part.getSubmittedFileName();
                     part.write(accountsPath + File.separator + fileName);
                 }
             }
