@@ -26,7 +26,7 @@
 </label>
     </label>
     <h4>course:</h4><label>
-    <input type="text" name="course" />
+    <input type="text" name="course" value="${CalObj.getCourse()}"/>
 </label>
     <h4>Completed:</h4><label>
     <input type="checkbox" name="status" id="status" value="completed" ${CalObj.getCompleted()!= "null" ? 'checked' : 'unchecked'}>
