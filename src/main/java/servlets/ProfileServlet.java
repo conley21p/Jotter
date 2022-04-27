@@ -5,6 +5,7 @@ import account.AccountManager;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.File;
 import java.io.IOException;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
@@ -31,7 +32,8 @@ public class ProfileServlet extends HttpServlet {
                 String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
                 //For Jacob's use
                 jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
-                String accountsPath = jotterPath + "/src/main/java/account/accounts";
+                //need to figure out how to generalize username
+                String accountsPath = jotterPath + "/src/main/java/account/accounts" + "jacob" + "/Calendars/" +  request.getParameter(("file"));
                 System.out.println("Jotter:: " + jotterPath);
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
