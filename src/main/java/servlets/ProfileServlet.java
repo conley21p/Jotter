@@ -26,9 +26,16 @@ public class ProfileServlet extends HttpServlet {
         {
             if (request.getParameter("file") != null)
             {
+                ClassLoader loader = AccountManager.class.getClassLoader();
+                String tempPath = loader.getResource("account/AccountManager.class").toString();
+                String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+                //For Jacob's use
+                jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
+                String accountsPath = jotterPath + "/src/main/java/account/accounts";
+                System.out.println("Jotter:: " + jotterPath);
+                System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
             }
-         System.out.println("Test");
         }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
     }
