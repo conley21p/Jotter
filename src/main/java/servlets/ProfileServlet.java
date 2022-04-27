@@ -8,6 +8,9 @@ import javax.servlet.annotation.*;
 import java.io.*;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 5,
+        maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,16 +35,15 @@ public class ProfileServlet extends HttpServlet {
                 //For Jacob's use
                 jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
                 //need to figure out how to generalize username
-                String accountsPath = jotterPath + "/src/main/java/account/accounts/" + "jacob" + "/Calendars/" +  request.getParameter(("file"));
+                String accountsPath = jotterPath + "/src/main/java/account/accounts/" + "jacob" + "/Calendars/";
                 System.out.println("Jotter:: " + jotterPath);
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
 
 
-                try{
-                    FileOutputStream newCal = new FileOutputStream(accountsPath);
-                }catch (IOException e){
-                    System.out.println("Error creating new calendar");
+                for (Part part : request.getParts()) {
+                    String fileName = part.getSubmittedFileName();;
+                    part.write(accountsPath + File.separator + fileName);
                 }
             }
         }
