@@ -26,7 +26,7 @@ public class ProfileServlet extends HttpServlet {
         {
             if (request.getParameter("file") != null)
             {
-                System.out.println("Test2");
+                System.out.println(request.getParameter("file"));
             }
          System.out.println("Test");
         }
