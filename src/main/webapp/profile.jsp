@@ -32,8 +32,8 @@
     <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button>
 
     <h4>Upload a file: </h4>
-    <input type="file" name="multiPartServlet" />
-    <input type="submit" value="Upload" />
+    <input type="file" id = "file" name="file" accept="file/txt"/>
+    <button type="submit" name="decision" value="import">Import</button>
 </form>
 
 <%--<form action="profile.jsp" method="post">--%>
