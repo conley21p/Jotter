@@ -37,6 +37,8 @@ public class ProfileServlet extends HttpServlet {
                 System.out.println("Jotter:: " + jotterPath);
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
+
+                File file = new File(accountsPath);
             }
         }
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response); // return to profile page
