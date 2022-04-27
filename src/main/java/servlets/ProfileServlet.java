@@ -5,10 +5,7 @@ import account.AccountManager;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
 public class ProfileServlet extends HttpServlet {
@@ -40,10 +37,9 @@ public class ProfileServlet extends HttpServlet {
                 System.out.println("Accounts:: " + accountsPath);
                 System.out.println(request.getParameter("file"));
 
-                File newCal = new File(accountsPath);
+
                 try{
-                    PrintWriter outfile = new PrintWriter(new FileWriter(newCal));
-                    outfile.close();
+                    FileOutputStream newCal = new FileOutputStream(accountsPath);
                 }catch (IOException e){
                     System.out.println("Error creating new calendar");
                 }
