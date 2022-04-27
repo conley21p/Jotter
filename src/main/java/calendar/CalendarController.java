@@ -12,6 +12,8 @@ public class CalendarController {
 
         String tempPath = loader.getResource("account/AccountManager.class").toString();
         String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
+        //For Jacob's use
+        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
         String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/";
 
         //Open user/Calendar folder and store name of each file as a calendar name
