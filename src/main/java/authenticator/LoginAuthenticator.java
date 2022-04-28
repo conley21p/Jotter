@@ -9,16 +9,7 @@ import java.util.Scanner;
 public class LoginAuthenticator {
     public static boolean authenticate(String user, String pass) {
         // getting the right file path
-        ClassLoader loader = LoginAuthenticator.class.getClassLoader();
-        String tempPath = loader.getResource("authenticator/LoginAuthenticator.class").toString();
-
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-
-        String accountsPath =  jotterPath + "/src/main/java/account/accounts";
-        System.out.println("Jotter:: " + jotterPath);
-        System.out.println("Accounts:: " + accountsPath);
-
-        String userAccountInfoPath = accountsPath + "/" + user + "/accountInfo";
+        String userAccountInfoPath = PathFinder.getAccountInformationPath(user);
 
         File userFile = new File(userAccountInfoPath);
         System.out.println("test:" + userAccountInfoPath);
@@ -27,6 +18,7 @@ public class LoginAuthenticator {
                 Scanner scan = new Scanner(userFile);
                 String userInfo = scan.nextLine();
                 String segments[] = userInfo.split(",");
+                scan.close();
                 if (segments[1].equals(pass)) {
                     return true;
                 }

@@ -2,8 +2,7 @@ package servlets;
 
 import account.AccountManager;
 import calendar.CalendarController;
-import User.UserController;
-
+import User.User;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -41,7 +40,7 @@ public class RegisterServlet extends HttpServlet {
             if (AccountManager.createAccount(username, password, email)) {
                 System.out.println("Account creation succeeded.");
                 String[] calendarNameList = CalendarController.getCalendarNameList(username);
-                UserController.loadUser(username, password, calendarNameList, CalendarController.getCalendar(username, calendarNameList[0]));
+                HomePageServlet.user = new User(username,password,calendarNameList,CalendarController.getCalendar(username,"School"));
 
                 getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); // go to homepage with new account
             } else {

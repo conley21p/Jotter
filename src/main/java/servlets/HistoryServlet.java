@@ -1,6 +1,6 @@
 package servlets;
 
-import User.UserController;
+import User.User;
 import calendar.Calendar;
 import calendar.CalendarController;
 
@@ -14,11 +14,11 @@ public class HistoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String curCalendar = UserController.getCurCalendar().getName();
-        UserController.setCurCalendar(CalendarController.getCalendar(UserController.getUsername(), "DELETED_ITEMS"));
-        request.setAttribute("assignments", UserController.getCurCalendar().getCalendarObjList());
-        request.setAttribute("size",        UserController.getCurCalendar().getCalendarObjList().size());
-        request.setAttribute("calName",     UserController.getCurCalendar().getName());
+        String curCalendar = HomePageServlet.user.getCurrCal().getName();
+        HomePageServlet.user.setCurrCal(CalendarController.getCalendar(HomePageServlet.user.getUsername(), "DELETED_ITEMS"));
+        request.setAttribute("assignments", HomePageServlet.user.getCurrCal().getCalendarObjList());
+            request.setAttribute("size",    HomePageServlet.user.getCurrCal().getCalendarObjList().size());
+        request.setAttribute("calName",     HomePageServlet.user.getCurrCal().getName());
         getServletContext().getRequestDispatcher("/history.jsp").forward(request, response);
     }
 

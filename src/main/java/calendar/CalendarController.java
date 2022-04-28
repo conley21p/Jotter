@@ -2,20 +2,17 @@ package calendar;
 
 import account.AccountManager;
 import servlets.HomePageServlet;
+import utils.PathFinder;
 
 import java.io.*;
 
 public class CalendarController {
 
     public static String[] getCalendarNameList(String username){
-        ClassLoader loader = AccountManager.class.getClassLoader();
-
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/";
+        String calendarsPath = PathFinder.getAccountCalendarsPath(username);
 
         //Open user/Calendar folder and store name of each file as a calendar name
-        File folder = new File(accountsPath);
+        File folder = new File(calendarsPath);
         File[] listOfFiles = folder.listFiles();
 
         // Will store list of calendars
@@ -38,18 +35,15 @@ public class CalendarController {
     }
 
     public static Calendar getCalendar(String username,String defaultName){
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + defaultName + "/";
+        String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + defaultName;
 
         // Open Calender object is in
-        System.out.println("accountsPath create cal:" + accountsPath + "\n");
+        System.out.println("accountsPath create cal:" + calendarPath + "\n");
 
         Calendar defaultCal = new Calendar();
         try {
 
-            File file = new File(accountsPath);
+            File file = new File(calendarPath);
             BufferedReader br = new BufferedReader(new FileReader(file));
 
             String line;
@@ -90,13 +84,10 @@ public class CalendarController {
         CalendarObject deleted = HomePageServlet.user.getCurrCal().deleteCalendarObjectList(index);
 
         //  Delete Object from the data base
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + HomePageServlet.user.getUsername() + "/Calendars/" + HomePageServlet.user.getCurrCal().getName() + "/";
+        String calendarPath = PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername()) + "/" + HomePageServlet.user.getCurrCal().getName();
         // Open Calender object is in
         try {
-            File file = new File(accountsPath);
+            File file = new File(calendarPath);
             File temp = File.createTempFile("temp-file-name", ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(temp));

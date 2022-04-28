@@ -1,6 +1,5 @@
 package servlets;
 
-import User.UserController;
 import account.AccountManager;
 import authenticator.LoginAuthenticator;
 
@@ -23,9 +22,8 @@ public class ProfileServlet extends HttpServlet {
 
         // delete account
         if (decision.equals("deleteAccount")) {
-            if (AccountManager.deleteAccount(UserController.getUsername())) {
-                System.out.println("Account " + UserController.getUsername() + " was deleted.");
-                UserController.dropUser();
+            if (AccountManager.deleteAccount(HomePageServlet.user.getUsername())) {
+                System.out.println("Account " + HomePageServlet.user.getUsername() + " was deleted.");
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response); // return to profile page
             }
         }

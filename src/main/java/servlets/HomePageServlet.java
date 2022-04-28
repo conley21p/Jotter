@@ -19,7 +19,8 @@ public class HomePageServlet extends HttpServlet {
 //    public static User user = new User("conley",
   //          CalendarController.getCalendarNameList("conley"),
     //        CalendarController.getCalendar("conley","School"));
-    public static User user = new User();
+    public static User user;
+    //user = new User();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

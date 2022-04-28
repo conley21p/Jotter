@@ -1,6 +1,8 @@
 package account;
 
-import User.UserController;
+import User.User;
+import calendar.CalendarController;
+import servlets.HomePageServlet;
 import utils.PathFinder;
 import java.io.File;
 import java.io.FileWriter;
@@ -42,6 +44,7 @@ public class AccountManager {
             outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/DELETED_ITEMS")));
             outfile.write("");
             outfile.close();
+            HomePageServlet.user = new User(username, password, CalendarController.getCalendarNameList(username), CalendarController.getCalendar(username,"School"));
         } catch (IOException e) {
             System.out.println("Could not create starting calendar and deleted items file.");
             isSuccess = false;
@@ -57,7 +60,6 @@ public class AccountManager {
         // deleting account directory
         File accountDirectory = new File(accountDirectoryPath);
         if (accountDirectory.isDirectory()) {
-            System.out.println("isDirectory");
             if (deleteDirectory(accountDirectory))
                 isSuccess = true;
         }
@@ -67,16 +69,16 @@ public class AccountManager {
 
     public static boolean changePassword(String newPassword) {
         boolean isSuccess = true;
-        File accountInfoFile = new File(PathFinder.getAccountInformationPath(UserController.getUsername()));
+        File accountInfoFile = new File(PathFinder.getAccountInformationPath(HomePageServlet.user.getUsername()));
         try {
             Scanner infile = new Scanner(accountInfoFile);
             String contents = infile.nextLine();
             infile.close();
-            contents = contents.replace(UserController.getPassword(), newPassword);
+            contents = contents.replace(HomePageServlet.user.getPassword(), newPassword);
             PrintWriter outfile = new PrintWriter(new FileWriter(accountInfoFile));
             outfile.println(contents);
             outfile.close();
-            UserController.setPassword(newPassword);
+            HomePageServlet.user.setPassword(newPassword);
         }
         catch (IOException e) {
             isSuccess = false;

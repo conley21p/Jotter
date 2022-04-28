@@ -1,7 +1,10 @@
-import User.UserController;
+package JunitTests;
+
+import User.User;
 import account.AccountManager;
 import calendar.CalendarController;
 import org.junit.jupiter.api.Test;
+import servlets.HomePageServlet;
 import utils.PathFinder;
 
 import java.io.File;
@@ -12,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountManagerTest {
     private String testUsername1 = "TEST_USER_1";
+    private String testUsername2 = "TEST_USER_2";
+    private String testUsername3 = "Test_USER_3";
     private String testPassword1 = "PASSWORD_1";
     private String testEmail1 = "EMAIL_1@gmail.com";
 
@@ -30,6 +35,7 @@ class AccountManagerTest {
         try {
             Scanner infile = new Scanner(accountInfoFile);
             assertEquals(testUsername1 + "," + testPassword1 + "," + testEmail1, infile.nextLine());
+            infile.close();
         }
         catch (IOException e) {}
 
@@ -39,21 +45,20 @@ class AccountManagerTest {
 
     @Test
     void changePassword() {
-        assertEquals(true, AccountManager.createAccount(testUsername1, testPassword1, testEmail1));
-        UserController.loadUser(testUsername1, testPassword1, CalendarController.getCalendarNameList(testUsername1), CalendarController.getCalendar(testUsername1,"School"));
+        assertEquals(true, AccountManager.createAccount(testUsername2, testPassword1, testEmail1));
         assertEquals(true, AccountManager.changePassword("NEW_PASSWORD"));
-        assertEquals("NEW_PASSWORD", UserController.getPassword());
+        assertEquals("NEW_PASSWORD", HomePageServlet.user.getPassword());
 
         // cleanup
-        AccountManager.deleteAccount(testUsername1);
+        AccountManager.deleteAccount(testUsername2);
     }
 
     @Test
     void deleteAccount() {
-        assertEquals(true, AccountManager.createAccount(testUsername1, testPassword1, testEmail1));
-        assertEquals(true, AccountManager.deleteAccount(testUsername1));
+        assertEquals(true, AccountManager.createAccount(testUsername3, testPassword1, testEmail1));
+        assertEquals(true, AccountManager.deleteAccount(testUsername3));
 
-        File accountDirectory = new File(PathFinder.getAccountDirectoryPath(testUsername1));
+        File accountDirectory = new File(PathFinder.getAccountDirectoryPath(testUsername3));
         assertEquals(false, accountDirectory.exists());
     }
 }
