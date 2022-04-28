@@ -6,16 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<html>
-<head>
-    <title>Upload Calendar File</title>
-</head>
-<body>
-<form action="profile.jsp" method="post" enctype="multipart/form-data">
-    <%--Code for import--%>
-    <h4>Upload a file: </h4>
-    <input type="file" id = "file" name="file" accept="file/txt" required/>
-    <button type="submit" name="import" value="import">Import</button>
-</form>
-</body>
-</html>
+<p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+<p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+<p><img id="output" width="200" /></p>
+
+<script>
+    let loadFile = function(event) {
+        let image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
