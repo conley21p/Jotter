@@ -17,7 +17,7 @@ public class PathFinder {
 
     public static String getAccountCalendarsPath(String username) {
         String userDirectoryPath = getAccountDirectoryPath(username);
-        return userDirectoryPath + "/" + username;
+        return userDirectoryPath + "/Calendars";
     }
 
     public static String getJotterPath() {

@@ -39,6 +39,7 @@ public abstract class CalendarObject {
     public void saveToDataBase(String username,
                                    String calenderName){
         String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + calenderName;
+        System.out.println("CalPath:"+calendarPath);
 
         // Open Calender object is in
         try {
@@ -73,7 +74,7 @@ public abstract class CalendarObject {
             file.delete();
             temp.renameTo(file);
         }catch (IOException e) {
-            System.out.println("Problem saving assignment to database");
+            System.out.println("Problem saving assignment to database1");
             //return false;
         }
     //return true;
@@ -106,7 +107,8 @@ public abstract class CalendarObject {
      */
     public void updateToDataBase(String username,
                                  String calenderName){
-        String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + calenderName;
+        String calendarPath = PathFinder.getAccountCalendarsPath(username);
+        calendarPath = calendarPath + "/" +calenderName;
 
         // Open Calender object is in
         try {

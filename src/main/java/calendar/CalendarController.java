@@ -10,7 +10,7 @@ public class CalendarController {
 
     public static String[] getCalendarNameList(String username){
         String calendarsPath = PathFinder.getAccountCalendarsPath(username);
-
+        System.out.println("calPath:"+ calendarsPath);
         //Open user/Calendar folder and store name of each file as a calendar name
         File folder = new File(calendarsPath);
         File[] listOfFiles = folder.listFiles();
@@ -85,6 +85,7 @@ public class CalendarController {
 
         //  Delete Object from the data base
         String calendarPath = PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername()) + "/" + HomePageServlet.user.getCurrCal().getName();
+        System.out.println("CalPath:" + calendarPath);
         // Open Calender object is in
         try {
             File file = new File(calendarPath);
