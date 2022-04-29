@@ -10,27 +10,33 @@ public abstract class CalendarObject {
     private Date date;
     private Time time;
     private String description;
+    private String course;
 
         //  constructor
     public CalendarObject(String name,
                           Date date,
                           Time time,
-                          String description){
+                          String description,
+                          String course){
         name.replace(","," ");
         description.replace(","," ");
+        course.replace(",", " ");
         this.name           = name;
         this.date           = date;
         this.time           = time;
         this.description    = description;
+        this.course         = course;
     }
     public CalendarObject(String name,
                           String date,
                           String time,
-                          String description){
+                          String description,
+                          String course){
         this.name           = name;
         this.date           = new Date(date);
         this.time           = new Time(time);
         this.description    = description;
+        this.course         = course;
     }
 
     /*
@@ -85,9 +91,11 @@ public abstract class CalendarObject {
     public void edit(String name,
                      Date date,
                      Time time,
-                     String description){
-        name.replace(","," ");
-        description.replace(","," ");
+                     String description,
+                     String course){
+        name.replaceAll(","," ");
+        description.replaceAll(","," ");
+        course.replaceAll(","," ");
         //  ParseUpdated string
         if (!this.name.equals(name)){
             this.setName(name);
@@ -100,6 +108,9 @@ public abstract class CalendarObject {
         }
         if (!this.description.equals(description)){
             this.setDescription(description);
+        }
+        if (!this.course.equals(course)){
+            this.setCourse(course);
         }
     }
     /*
@@ -187,9 +198,14 @@ public abstract class CalendarObject {
         this.description = description;
     }
 
+    public String getCourse() {return course;}
+
+    public void setCourse(String course) {this.course = course;}
+
     public abstract void edit(String name,
                               Date date,
                               Time time,
                               String description,
+                              String course,
                               String status);
 }

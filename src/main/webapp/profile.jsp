@@ -1,3 +1,4 @@
+<%@ page import="utils.UserController" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -30,6 +31,8 @@
 <%--    <button onClick="confirmDelete">Delete Account</button><br>--%>
     <%--TODO confirm submission--%>
     <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button>
+</form>
+<a href="/ImportCalendarServlet">Import a Calendar</a><br>
 
 </form>
 </body>

@@ -1,9 +1,9 @@
 package account;
 
-import User.User;
 import calendar.CalendarController;
 import servlets.HomePageServlet;
 import utils.PathFinder;
+import User.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -60,6 +60,7 @@ public class AccountManager {
         // deleting account directory
         File accountDirectory = new File(accountDirectoryPath);
         if (accountDirectory.isDirectory()) {
+            System.out.println(accountDirectory.getName() + " is directory");
             if (deleteDirectory(accountDirectory))
                 isSuccess = true;
         }

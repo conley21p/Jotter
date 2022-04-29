@@ -21,6 +21,7 @@
 <a href="/profile">Profile</a><br>
 <a href="/register">Register</a><br>
 <a href="LoginServlet">Login</a><br>
+<a href="/ImportCalendarServlet">File</a><br>
 <a href="AddAssignmentServlet">Click To Add an Assignment</a>
 </body>
 </html>

@@ -8,15 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-    <title>Upload File</title>
+    <title>Upload Calendar File</title>
 </head>
 <body>
-<form action="FileServlet" method="post">
+<form action="profile.jsp" method="post" enctype="multipart/form-data">
+    <%--Code for import--%>
     <h4>Upload a file: </h4>
-    <input type="file" id = "file" name="file" accept="image/jpeg" required/>
-
-    </label>
-    <h4></h4><input type="submit" />
+    <input type="file" id = "file" name="file" accept="file/txt" required/>
+    <button type="submit" name="import" value="import">Import</button>
 </form>
 </body>
 </html>

@@ -9,6 +9,9 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "ProfileServlet", value = "/profile")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 5,
+        maxRequestSize = 1024 * 1024 * 5 * 5)
 public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

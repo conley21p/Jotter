@@ -10,7 +10,6 @@ public class CalendarController {
 
     public static String[] getCalendarNameList(String username){
         String calendarsPath = PathFinder.getAccountCalendarsPath(username);
-        System.out.println("calPath:"+ calendarsPath);
         //Open user/Calendar folder and store name of each file as a calendar name
         File folder = new File(calendarsPath);
         File[] listOfFiles = folder.listFiles();
@@ -37,9 +36,6 @@ public class CalendarController {
     public static Calendar getCalendar(String username,String defaultName){
         String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + defaultName;
 
-        // Open Calender object is in
-        System.out.println("accountsPath create cal:" + calendarPath + "\n");
-
         Calendar defaultCal = new Calendar();
         try {
 
@@ -61,14 +57,16 @@ public class CalendarController {
                 String objType    = templine[2];
                 String nameString = templine[3];
                 String descString = templine[4];
+                String course = templine[5];
                 //System.out.println("Object type:"+objType);
                 if (objType.equals("A")){
-                    String status = templine[5];
+                    String status = templine[6];
                     defaultCal.addNewToCalendarObjList( username,
                                                         new Assignment(nameString,
                                                                        new Date(dateString),
                                                                        new Time(timeString),
                                                                        descString,
+                                                                       course,
                                                                        status));
                 }
 
@@ -106,7 +104,8 @@ public class CalendarController {
                     &&  deleted.getName().compareTo(templine[3]) == 0
                     &&  deleted.getDescription().compareTo(templine[4])== 0){
                         if (templine[2].compareTo("A") ==0){
-                            if (((Assignment)deleted).getCompleted().compareTo(templine[5]) ==0){
+                            if (((Assignment)deleted).getCompleted().compareTo(templine[6]) == 0
+                            &&  deleted.getCourse().compareTo(templine[5])                  == 0){
                                 //  All attributes match so delete line
                                 flag = false;
                             }
