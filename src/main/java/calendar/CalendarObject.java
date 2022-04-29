@@ -18,9 +18,9 @@ public abstract class CalendarObject {
                           Time time,
                           String description,
                           String course){
-        name.replace(","," ");
-        description.replace(","," ");
-        course.replace(",", " ");
+        name.replaceAll(","," ");
+        description.replaceAll(","," ");
+        course.replaceAll(",", " ");
         this.name           = name;
         this.date           = date;
         this.time           = time;
