@@ -32,12 +32,7 @@ public class ImportCalendarServlet extends HttpServlet {
         if (!uploadDir.exists()) uploadDir.mkdir();
         for (Part part : request.getParts()) {
             String fileName = part.getSubmittedFileName();
-            if (fileName.equals(null))
-            {
-                ;
-            } else{
-                part.write(uploadPath + File.separator + fileName);
-            }
+            part.write(uploadPath + File.separator + fileName);
         }
         //System.out.println(CalendarController.getCalendarNameList(HomePageServlet.user.getUsername()));
         getServletContext().getRequestDispatcher("/ImportCalendar.jsp").forward(request, response);
