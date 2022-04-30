@@ -16,7 +16,7 @@
 
 <h1>Calendar</h1>
 <a href="HomePageServlet">Back to Homepage</a><br><br>
-<form enctype="multipart/form-data" action="/importCalendar" method="post">
+<form action="/ImportCalendar" method="post" enctype="multipart/form-data">
 
     <label for="newCal">Upload Calendar:</label>
     <input type="file" id="newCal" name="newCal" accept=".txt">
