@@ -20,7 +20,7 @@
 
     <label for="newCal">Upload Calendar:</label>
     <input type="file" id="newCal" name="newCal" accept=".txt">
-    <button type="submit" name="decision" value="changePassword">Change Password</button><br><br><br><br>
+    <button type="submit" name="decision" value="importCal">Import Calendar</button><br><br><br><br>
 </form>
 
 </form>
