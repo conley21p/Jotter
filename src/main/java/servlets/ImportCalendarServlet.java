@@ -34,5 +34,7 @@ public class ImportCalendarServlet extends HttpServlet {
             String fileName = part.getSubmittedFileName();
             part.write(uploadPath + File.separator + fileName);
         }
+
+        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }
