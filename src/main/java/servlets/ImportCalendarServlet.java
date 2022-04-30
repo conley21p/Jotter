@@ -35,7 +35,7 @@ public class ImportCalendarServlet extends HttpServlet {
             String fileName = part.getSubmittedFileName();
             part.write(uploadPath + File.separator + fileName);
         }
-
+        CalendarController.deleteCalendarObject(0);
         System.out.println(CalendarController.getCalendarNameList(HomePageServlet.user.getUsername()));
         getServletContext().getRequestDispatcher("/ImportCalendar.jsp").forward(request, response);
     }
