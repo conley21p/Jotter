@@ -16,17 +16,18 @@ public class HomePageServlet extends HttpServlet {
             -calendarController is basically the live database
      */
     //  Default auto load already created class
-    public static User user = new User("conley",
-            CalendarController.getCalendarNameList("conley"),
-            CalendarController.getCalendar("conley","School"));
-    //public static User user = new User();
+//    public static User user = new User("conley",
+  //          CalendarController.getCalendarNameList("conley"),
+    //        CalendarController.getCalendar("conley","School"));
+    public static User user;
+    //user = new User();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("assignments", user.getCurrCal().getCalendarObjList());
         request.setAttribute("size",        user.getCurrCal().getCalendarObjList().size());
         request.setAttribute("calName",     user.getCurrCal().getName());
-        System.out.println("CalName:" + user.getCurrCal().getName()+ "\n");
+        //System.out.println("CalName:" + user.getCurrCal().getName()+ "\n");
 
 
         /*

@@ -1,6 +1,8 @@
 package calendar;
 
 import account.AccountManager;
+import utils.PathFinder;
+
 import java.io.*;
 
 public abstract class CalendarObject {
@@ -16,9 +18,9 @@ public abstract class CalendarObject {
                           Time time,
                           String description,
                           String course){
-        name.replace(","," ");
-        description.replace(","," ");
-        course.replace(",", " ");
+        name.replaceAll(","," ");
+        description.replaceAll(","," ");
+        course.replaceAll(",", " ");
         this.name           = name;
         this.date           = date;
         this.time           = time;
@@ -42,16 +44,12 @@ public abstract class CalendarObject {
      */
     public void saveToDataBase(String username,
                                    String calenderName){
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        //For Jacob's use
-        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
+        String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + calenderName;
+        System.out.println("CalPath:"+calendarPath);
 
         // Open Calender object is in
         try {
-            File file = new File(accountsPath);
+            File file = new File(calendarPath);
             File temp = File.createTempFile("temp-file-name", ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(temp));
@@ -82,7 +80,7 @@ public abstract class CalendarObject {
             file.delete();
             temp.renameTo(file);
         }catch (IOException e) {
-            System.out.println("Problem saving assignment to database");
+            System.out.println("Problem saving assignment to database1");
             //return false;
         }
     //return true;
@@ -95,9 +93,9 @@ public abstract class CalendarObject {
                      Time time,
                      String description,
                      String course){
-        name.replace(","," ");
-        description.replace(","," ");
-        course.replace(","," ");
+        name.replaceAll(","," ");
+        description.replaceAll(","," ");
+        course.replaceAll(","," ");
         //  ParseUpdated string
         if (!this.name.equals(name)){
             this.setName(name);
@@ -120,16 +118,12 @@ public abstract class CalendarObject {
      */
     public void updateToDataBase(String username,
                                  String calenderName){
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        //For Jacob's use
-        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
+        String calendarPath = PathFinder.getAccountCalendarsPath(username);
+        calendarPath = calendarPath + "/" +calenderName;
 
         // Open Calender object is in
         try {
-            File file = new File(accountsPath);
+            File file = new File(calendarPath);
             File temp = File.createTempFile("temp-file-name", ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(temp));

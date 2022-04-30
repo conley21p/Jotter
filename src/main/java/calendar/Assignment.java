@@ -11,7 +11,7 @@ public class Assignment extends CalendarObject{
                       String course,
                       String status) {
         super(name, date, time, description, course);
-        status.replace(","," ");
+        status.replaceAll(","," ");
         this.completed = status;
     }
 

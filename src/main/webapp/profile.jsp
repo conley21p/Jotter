@@ -1,3 +1,4 @@
+<%@ page import="User.UserController" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -15,25 +16,24 @@
     <input type="text" id="newPassword" name="newPassword">
     <button type="submit" name="decision" value="changePassword">Change Password</button><br><br><br><br>
 
-    <%--    <script>--%>
-    <%--        function confirmDelete () {--%>
-    <%--            alert("howdy");--%>
-    <%--            var agree = confirm("Are you sure you want to delete your account?");--%>
-    <%--            if (agree) {--%>
-    <%--                return true;--%>
-    <%--            } else {--%>
-    <%--                return false;--%>
-    <%--            }--%>
-    <%--        }--%>
-    <%--    </script>--%>
+<%--    <script>--%>
+<%--        function confirmDelete () {--%>
+<%--            alert("howdy");--%>
+<%--            var agree = confirm("Are you sure you want to delete your account?");--%>
+<%--            if (agree) {--%>
+<%--                return true;--%>
+<%--            } else {--%>
+<%--                return false;--%>
+<%--            }--%>
+<%--        }--%>
+<%--    </script>--%>
 
-    <%--    <button onClick="confirmDelete">Delete Account</button><br>--%>
+<%--    <button onClick="confirmDelete">Delete Account</button><br>--%>
     <%--TODO confirm submission--%>
     <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button>
-
-
 </form>
 <a href="/ImportCalendarServlet">Import a Calendar</a><br>
 
+</form>
 </body>
 </html>

@@ -1,94 +1,107 @@
 package account;
 
-
+import calendar.CalendarController;
+import servlets.HomePageServlet;
+import utils.PathFinder;
+import User.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class AccountManager {
-    public static boolean makeAccount(String username, String password, String email) {
-        System.out.println("first 1");
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        System.out.printf("first");
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
+    public static boolean createAccount(String username, String password, String email) {
+        boolean isSuccess = true;
+        // creating new account directory
+        String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
+        File accountDirectory = new File(accountDirectoryPath);
+        isSuccess = accountDirectory.mkdir();
+        System.out.println("Account " + username + " made? " + isSuccess);
 
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        //For Jacob's use
-        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
-        String accountsPath = jotterPath + "/src/main/java/account/accounts";
-        System.out.println("Jotter:: " + jotterPath);
-        System.out.println("Accounts:: " + accountsPath);
-
-        // creating user's account directory
-        File accountDirectory = new File(accountsPath + "/" + username);
-        boolean result = accountDirectory.mkdir();
-        System.out.println(result);
-
-        // creating user's account information file
-        File accountInfo = new File(accountsPath + "/" + username + "/accountInfo");
+        // creating new information file
+        File accountInfo = new File(accountDirectoryPath + "/accountInfo");
         try {
             PrintWriter outfile = new PrintWriter(new FileWriter(accountInfo));
             outfile.print(username + "," + password + "," + email);
             outfile.close();
         }
         catch (IOException e) {
-            System.out.println("Could not create user account info");
+            System.out.println("Could not create account information file.");
+            isSuccess = false;
         }
 
-        // creating user's calendar directory
-        File calendarsDirectory = new File(accountsPath + "/" + username + "/Calendars");
-        calendarsDirectory.mkdir();
-        File defaultCal = new File(accountsPath + "/" + username + "/Calendars/School");
-        try{
-            PrintWriter outfile = new PrintWriter(new FileWriter(defaultCal));
+        // creating new calendar directory
+        File calendarsDirectory = new File(accountDirectoryPath + "/Calendars");
+        isSuccess = calendarsDirectory.mkdir();
+        System.out.println("Account " + username + " calendars directory made? " + isSuccess);
+
+        // creating starter calendar and deleted item calendar
+        try {
+            PrintWriter outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/School")));
+            outfile.write("");
             outfile.close();
-        }catch (IOException e){
-            System.out.println("Error creating default calendar");
+            outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/DELETED_ITEMS")));
+            outfile.write("");
+            outfile.close();
+            HomePageServlet.user = new User(username, password, CalendarController.getCalendarNameList(username), CalendarController.getCalendar(username,"School"));
+        } catch (IOException e) {
+            System.out.println("Could not create starting calendar and deleted items file.");
+            isSuccess = false;
         }
 
-        // Load user
-        //UserController.setUser(username);
-
-        // TODO create starter calendar
-
-        return result;
+        return isSuccess;
     }
 
     public static boolean deleteAccount(String username) {
         boolean isSuccess = false;
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
+        String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
 
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = jotterPath + "/src/main/java/account/accounts";
-        System.out.println("Jotter:: " + jotterPath);
-        System.out.println("Accounts:: " + accountsPath);
-
-        // creating user's account directory
-        File accountDirectory = new File(accountsPath + "/" + username);
+        // deleting account directory
+        File accountDirectory = new File(accountDirectoryPath);
         if (accountDirectory.isDirectory()) {
             System.out.println(accountDirectory.getName() + " is directory");
             if (deleteDirectory(accountDirectory))
                 isSuccess = true;
         }
+        System.out.println("Account " + username + " is deleted? " + isSuccess);
         return isSuccess;
     }
 
+    public static boolean changePassword(String newPassword) {
+        boolean isSuccess = true;
+        File accountInfoFile = new File(PathFinder.getAccountInformationPath(HomePageServlet.user.getUsername()));
+        try {
+            Scanner infile = new Scanner(accountInfoFile);
+            String contents = infile.nextLine();
+            infile.close();
+            contents = contents.replace(HomePageServlet.user.getPassword(), newPassword);
+            PrintWriter outfile = new PrintWriter(new FileWriter(accountInfoFile));
+            outfile.println(contents);
+            outfile.close();
+            HomePageServlet.user.setPassword(newPassword);
+        }
+        catch (IOException e) {
+            isSuccess = false;
+        }
+        return isSuccess;
+    }
+
+    /**
+     * Helper method to recursively delete a directory with contents
+     * Precondition: directory is an actual directory
+     */
     private static boolean deleteDirectory(File directory) {
         boolean isSuccess = false;
-        if (directory.isDirectory())
-            for (File subFile : directory.listFiles()) {
-                System.out.println(subFile.getName());
-                if (subFile.isDirectory()) {
-                    System.out.println("subDir");
-                    deleteDirectory(subFile);
-                }
-                else
-                    subFile.delete();
-                isSuccess = true;
+        for (File subFile : directory.listFiles()) {
+            if (subFile.isDirectory()) {
+                deleteDirectory(subFile);
             }
-        directory.delete();
+            else {
+                subFile.delete();
+            }
+        }
+        isSuccess = directory.delete();
         System.out.println("Deleting " + directory.getName() + ": " + isSuccess);
         return isSuccess;
     }
