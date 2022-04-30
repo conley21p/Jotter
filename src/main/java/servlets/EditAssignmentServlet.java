@@ -3,10 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Enumeration;
 import java.time.LocalDateTime;
 
-import calendar.Assignment;
-import calendar.CalendarController;
-import calendar.Date;
-import calendar.Time;
+import calendar.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -73,7 +70,8 @@ public class EditAssignmentServlet extends HttpServlet {
             int index = HomePageServlet.user.getCurrCal().getCalendarObjList().indexOf(editingObject);
             System.out.println("Index of deleting object is:" + index);
             //  Delete Object from the list
-            CalendarController.deleteCalendarObject(index);
+            CalendarObject deleted = CalendarController.deleteCalendarObject(index);
+            deleted.saveToDataBase(HomePageServlet.user.getUsername(), "DELETED_ITEMS");
             response.sendRedirect("HomePageServlet");
             return;
 

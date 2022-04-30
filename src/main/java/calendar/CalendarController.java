@@ -78,9 +78,8 @@ public class CalendarController {
         return defaultCal;
     }
 
-    public static void deleteCalendarObject(int index){
+    public static CalendarObject deleteCalendarObject(int index){
         CalendarObject deleted = HomePageServlet.user.getCurrCal().deleteCalendarObjectList(index);
-
         //  Delete Object from the data base
         String calendarPath = PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername()) + "/" + HomePageServlet.user.getCurrCal().getName();
         System.out.println("CalPath:" + calendarPath);
@@ -128,5 +127,6 @@ public class CalendarController {
             System.out.println("Problem saving assignment to database");
             //return false;
         }
+        return deleted;
     }
 }
