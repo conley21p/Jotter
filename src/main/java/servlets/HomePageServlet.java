@@ -28,6 +28,7 @@ public class HomePageServlet extends HttpServlet {
         request.setAttribute("size",        user.getCurrCal().getCalendarObjList().size());
         request.setAttribute("calName",     user.getCurrCal().getName());
         //System.out.println("CalName:" + user.getCurrCal().getName()+ "\n");
+        System.out.println(user.getCalendarNames());
 
 
         /*
