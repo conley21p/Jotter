@@ -32,7 +32,7 @@ public class ImportCalendarServlet extends HttpServlet {
 
         for (Part part : request.getParts()) {
             String fileName = part.getSubmittedFileName();
-            //part.write(uploadPath + File.separator + fileName);
+            part.write(uploadPath + File.separator + fileName);
         }
 
         getServletContext().getRequestDispatcher("/ImportCalendar.jsp").forward(request, response);
