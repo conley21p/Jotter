@@ -28,7 +28,7 @@ public class ImportCalendarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uploadPath = PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
         File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) uploadDir.mkdir();
+        //if (!uploadDir.exists()) uploadDir.mkdir();
 
         for (Part part : request.getParts()) {
             String fileName = part.getSubmittedFileName();
