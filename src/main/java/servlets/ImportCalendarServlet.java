@@ -1,4 +1,5 @@
 package servlets;
+import calendar.CalendarController;
 import utils.PathFinder;
 
 import javax.servlet.*;
@@ -35,6 +36,7 @@ public class ImportCalendarServlet extends HttpServlet {
             part.write(uploadPath + File.separator + fileName);
         }
 
+        System.out.println(CalendarController.getCalendarNameList(HomePageServlet.user.getUsername()));
         getServletContext().getRequestDispatcher("/ImportCalendar.jsp").forward(request, response);
     }
 }
