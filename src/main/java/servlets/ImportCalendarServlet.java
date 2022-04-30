@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-@WebServlet(name = "ImportCalendarServlet", value = "/ImportCalendarServlet")
+@WebServlet(name = "ImportCalendarServlet", urlPatterns = "/ImportCalendar")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
         maxRequestSize = 1024 * 1024 * 5 * 5)
