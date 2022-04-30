@@ -23,9 +23,17 @@ public class ImportCalendarServlet extends HttpServlet {
         getServletContext().getRequestDispatcher("/importCalendar.jsp").forward(request,response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("HomePageServlet");
-        File accountInfoFile = new File(PathFinder.getAccountInformationPath(HomePageServlet.user.getUsername()));
+        String uploadPath = PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) uploadDir.mkdir();
+
+        for (Part part : request.getParts()) {
+            String fileName = part.getSubmittedFileName();
+            part.write(uploadPath + File.separator + fileName);
+        }
     }
 }
