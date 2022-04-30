@@ -32,7 +32,7 @@
     <%--TODO confirm submission--%>
     <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button>
 </form>
-<a href="/ImportCalendarServlet">Import a Calendar</a><br>
+<a href="/ImportCalendar">Import a Calendar</a><br>
 
 </form>
 </body>

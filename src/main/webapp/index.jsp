@@ -15,7 +15,7 @@
 <a href="/register">Register</a>
 <a href="/login">Login</a>
 <a href="AddAssignmentServlet">Click To Add an Assignment</a>
-<a href="/FileServlet">File</a>
+<a href="/ImportCalendar">File</a>
 <a href="/history">History</a>
 
 <h1>Assignments</h1>
