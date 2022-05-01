@@ -16,8 +16,8 @@
 
 <h1>Calendars Available</h1>
 <h4>Names:</h4>
-<c:forEach items="${assignments}" var="item">
-    -${item.getName()} ${item.getCourse()}  <form action="editAssign" method="get"><input type="submit"  value="View/Edit" name="${item.getName()}" /></form>
+<c:forEach items="${calendars}" var="item">
+    -${item.getName()} <form action="makeCurrCal" method="post"><input type="submit"  value="Make Current" name="${item.getName()}" /></form>
 </c:forEach>
 </body>
 </html>
