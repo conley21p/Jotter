@@ -3,6 +3,7 @@ package calendar;
 import account.AccountManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Calendar {
     private ArrayList<CalendarObject> calendarObjList;
@@ -82,6 +83,11 @@ public class Calendar {
     }
     public void setCalendarObjList(ArrayList<CalendarObject> calendarObjList) {
         this.calendarObjList = calendarObjList;
+    }
+
+    public void sortCalendar()
+    {
+        Collections.sort(this.calendarObjList, CalendarObject.CalCourseComparator);
     }
     public int getCurrentSize() {
         return currentSize;

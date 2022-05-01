@@ -4,6 +4,7 @@ import account.AccountManager;
 import utils.PathFinder;
 
 import java.io.*;
+import java.util.Comparator;
 
 public abstract class CalendarObject {
     private String name;
@@ -162,6 +163,19 @@ public abstract class CalendarObject {
         return this.date.toString() + ","  + this.time.toString() + ",CalObj," + this.name + "," + this.description;
     }
 
+
+    public static Comparator<CalendarObject> CalCourseComparator = new Comparator<CalendarObject>() {
+
+        public int compare(CalendarObject c1, CalendarObject c2) {
+            String CourseName1 = c1.getCourse().toUpperCase();
+            String CourseName2 = c2.getCourse().toUpperCase();
+
+            //ascending order
+            return CourseName1.compareTo(CourseName2);
+
+            //descending order
+            //return StudentName2.compareTo(StudentName1);
+        }};
     /*
         GETTERs & SETTERs
      */
