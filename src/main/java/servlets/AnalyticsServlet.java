@@ -25,5 +25,6 @@ public class AnalyticsServlet extends HttpServlet{
         int totalAssignments = HomePageServlet.user.getCurrCal().getCurrentSize();
 
         message = "You have completed " + comAssignments + " out of " + totalAssignments + " assignments.";
+        getServletContext().getRequestDispatcher("/Analytic.jsp").forward(request, response);
     }
 }
