@@ -12,6 +12,7 @@ public abstract class CalendarObject {
     private Time time;
     private String description;
     private String course;
+    private String completed;
 
         //  constructor
     public CalendarObject(String name,
@@ -215,6 +216,14 @@ public abstract class CalendarObject {
     public String getCourse() {return course;}
 
     public void setCourse(String course) {this.course = course;}
+
+    public String getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(String completed) {
+        this.completed = completed;
+    }
 
     public abstract void edit(String name,
                               Date date,

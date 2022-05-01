@@ -89,6 +89,18 @@ public class Calendar {
     {
         Collections.sort(this.calendarObjList, CalendarObject.CalCourseComparator);
     }
+
+    public int generateAnalysis()
+    {
+        int completedAssignments = 0;
+        for (int i = currentSize; i > 0; i--)
+        {
+            if (calendarObjList.get(i).getCompleted() != null)
+                completedAssignments++;
+        }
+        return completedAssignments;
+    }
+
     public int getCurrentSize() {
         return currentSize;
     }
