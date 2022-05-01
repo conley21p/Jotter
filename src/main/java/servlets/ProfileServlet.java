@@ -17,6 +17,7 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/profile.jsp").forward(request, response);
+
     }
 
     @Override
@@ -47,6 +48,22 @@ public class ProfileServlet extends HttpServlet {
             System.out.println("Test");
             HomePageServlet.user.getCurrCal().sortCalendar();
             message = "Calendar Sorted";
+        }
+        //export calendar
+        else if (decision.equals("exportCalendar")) {
+            String fileName = HomePageServlet.user.getCurrCal().getName();
+            String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
+
+            response.setContentType("APPLICATION/OCTET-STREAM");
+            response.setHeader("Content-Disposition","attachment; filename=\"" + fileName + "\"");
+            java.io.OutputStream out = response.getOutputStream();
+            java.io.FileInputStream fileInputStream=new java.io.FileInputStream(filePath + fileName);
+
+            int i;
+            while ((i=fileInputStream.read()) != -1) {
+                out.write(i);
+            }
+            fileInputStream.close();
         }
 
         request.setAttribute("message", message); // message or error to display to the user
