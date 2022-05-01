@@ -19,16 +19,12 @@ public class DownloadServlet extends HttpServlet {
         String file = filePath + "/" + fileName;
         System.out.println("Path to file: " + file);
 
-        try(InputStream in = request.getServletContext().getResourceAsStream(file);
-            OutputStream out = response.getOutputStream()) {
+        FileInputStream in = new FileInputStream(file);
+        OutputStream out = response.getOutputStream();
 
-            byte[] buffer = new byte[ARBITARY_SIZE];
-
-            int numBytesRead;
-            while ((numBytesRead = in.read(buffer)) > 0) {
-                System.out.println("Test");
-                out.write(buffer, 0, numBytesRead);
-            }
+        int i;
+        while ((i = in.read()) != -1) {
+        out.write(i);
         }
     }
 }
