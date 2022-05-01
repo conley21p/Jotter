@@ -10,12 +10,12 @@ public class DownloadServlet extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        String filename = "home.jsp";
-        String filepath = "e:\\";
+        String fileName = HomePageServlet.user.getCurrCal().getName();
+        String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
         response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");
+        response.setHeader("Content-Disposition","attachment; filename=\"" + fileName + "\"");
 
-        FileInputStream fileInputStream = new FileInputStream(filepath + filename);
+        FileInputStream fileInputStream = new FileInputStream(filePath + fileName);
 
         int i;
         while ((i=fileInputStream.read()) != -1) {
