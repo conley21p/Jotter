@@ -1,8 +1,10 @@
 package servlets;
 import java.io.*;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+@WebServlet(name = "DownloadServlet", value = "/DownloadServlet")
 public class DownloadServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
