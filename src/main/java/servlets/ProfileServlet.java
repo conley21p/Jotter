@@ -46,6 +46,7 @@ public class ProfileServlet extends HttpServlet {
         else if (decision.equals("sortCalendar")) {
             System.out.println("Test");
             HomePageServlet.user.getCurrCal().sortCalendar();
+            message = "Calendar Sorted";
         }
 
         request.setAttribute("message", message); // message or error to display to the user

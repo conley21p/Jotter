@@ -30,7 +30,7 @@
 
 <%--    <button onClick="confirmDelete">Delete Account</button><br>--%>
     <%--TODO confirm submission--%>
-    <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button>
+    <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button><br>
 
     <button type="submit" name="decision" value="sortCalendar">Sort Current Calendar</button>
 </form>
