@@ -5,30 +5,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 @WebServlet("/DownloadServlet")
-
 public class DownloadServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    private final int ARBITARY_SIZE = 1048;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        String fileName = HomePageServlet.user.getCurrCal().getName();
-        String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
+        resp.setContentType("text/plain");
+        resp.setHeader("Content-disposition", "attachment; filename=sample.txt");
 
-        response.setContentType("text/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=\""
-                + fileName + "\"");
+        try(InputStream in = req.getServletContext().getResourceAsStream("/WEB-INF/sample.txt");
+            OutputStream out = resp.getOutputStream()) {
 
-        FileInputStream fileInputStream = new FileInputStream(filePath
-                + fileName);
-        System.out.println("T");
+            byte[] buffer = new byte[ARBITARY_SIZE];
 
-        int i;
-        while ((i = fileInputStream.read()) != -1) {
-            out.write(i);
+            int numBytesRead;
+            while ((numBytesRead = in.read(buffer)) > 0) {
+                out.write(buffer, 0, numBytesRead);
+            }
         }
-        fileInputStream.close();
-        out.close();
     }
 }
