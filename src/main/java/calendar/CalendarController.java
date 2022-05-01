@@ -36,7 +36,7 @@ public class CalendarController {
     public static Calendar getCalendar(String username,String defaultName){
         String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + defaultName;
 
-        Calendar defaultCal = new Calendar();
+        Calendar defaultCal = new Calendar(5, defaultName);
         try {
 
             File file = new File(calendarPath);
