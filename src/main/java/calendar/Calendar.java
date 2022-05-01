@@ -96,7 +96,7 @@ public class Calendar {
         for (int i = 0; i < currentSize; i++)
         {
             Assignment assign = (Assignment) calendarObjList.get(i);
-            if (assign.getCompleted() != null)
+            if (assign.getCompleted().contains("20"))
                 completedAssignments++;
         }
         System.out.println(completedAssignments);
