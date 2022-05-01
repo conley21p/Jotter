@@ -17,6 +17,7 @@ public class DownloadServlet extends HttpServlet {
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
 
         response.setContentType("text/csv");
+        System.out.println("T");
         response.setHeader("Content-Disposition", "attachment; filename=\""
                 + fileName + "\"");
 
@@ -29,6 +30,5 @@ public class DownloadServlet extends HttpServlet {
         }
         fileInputStream.close();
         out.close();
-        System.out.println("T");
     }
 }
