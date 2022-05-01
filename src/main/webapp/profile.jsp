@@ -35,8 +35,7 @@
     <button type="submit" name="decision" value="sortCalendar">Sort Current Calendar</button><br>
 </form>
 <form action="DownloadServlet" method="get">
-    <h2>Welcome to GeeksforGeeks.</h2>
-    <h3>Download the updated Data structures course structure here.</h3>
+    <h3>Click below to download the current calendar.</h3>
     <input type="submit" value="Download" />
 </form>
 <a href="/ImportCalendar">Import a Calendar</a><br>
