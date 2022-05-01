@@ -18,6 +18,7 @@
 <a href="/ImportCalendar">Import Calendar</a>
 <a href="/history">History</a>
 <a href="/ChangeCurrCalendar">Change Calendar</a>
+<a href="/Analytic">Analytics</a>
 <h1>Assignments</h1>
 <h4>Names:</h4>
     <c:forEach items="${assignments}" var="item">
