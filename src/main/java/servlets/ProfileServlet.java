@@ -61,7 +61,7 @@ public class ProfileServlet extends HttpServlet {
 
 
             java.io.OutputStream out = response.getOutputStream();
-            java.io.FileInputStream in = new java.io.FileInputStream(filePath);
+            java.io.FileInputStream in = new java.io.FileInputStream(my_file);
             byte[] buffer = new byte[4096];
             int length;
             while ((length = in.read(buffer)) > 0){
