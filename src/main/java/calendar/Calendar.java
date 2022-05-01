@@ -93,7 +93,7 @@ public class Calendar {
     public int generateAnalysis()
     {
         int completedAssignments = 0;
-        for (int i = currentSize; i > 0; i--)
+        for (int i = 0; i < currentSize; i++)
         {
             if (calendarObjList.get(i).getCompleted() != "null")
                 completedAssignments++;
