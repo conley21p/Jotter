@@ -53,22 +53,6 @@ public class ProfileServlet extends HttpServlet {
         else if (decision.equals("exportCalendar")) {
             String fileName = HomePageServlet.user.getCurrCal().getName();
             String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
-
-            response.setContentType("text/plain");
-            response.setHeader("Content-disposition","attachment; filename=yourcustomfilename.txt");
-
-            java.io.File my_file = new java.io.File(fileName);
-
-
-            java.io.OutputStream out = response.getOutputStream();
-            java.io.FileInputStream in = new java.io.FileInputStream(my_file);
-            byte[] buffer = new byte[4096];
-            int length;
-            while ((length = in.read(buffer)) > 0){
-                out.write(buffer, 0, length);
-            }
-            in.close();
-            out.flush();
         }
 
         request.setAttribute("message", message); // message or error to display to the user

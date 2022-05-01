@@ -33,8 +33,8 @@
     <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button><br>
 
     <button type="submit" name="decision" value="sortCalendar">Sort Current Calendar</button><br>
-    <button type="submit" name="decision" value="exportCalendar">Export Current Calendar</button>
 </form>
+<a href="/DownloadServlet">download the jsp file</a>
 <a href="/ImportCalendar">Import a Calendar</a><br>
 
 </form>
