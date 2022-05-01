@@ -12,11 +12,10 @@ import java.io.IOException;
 public class ChangeCurrCalendarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = HomePageServlet.user;
-        request.setAttribute("assignments", user.getCurrCal().getCalendarObjList());
-        request.setAttribute("size",        user.getCurrCal().getCalendarObjList().size());
-        request.setAttribute("calName",     user.getCurrCal().getName());
-        System.out.println(CalendarController.getCalendar(user.getUsername(), "test.txt").getName());
+        request.setAttribute("assignments", HomePageServlet.user.getCurrCal().getCalendarObjList());
+        request.setAttribute("size",        HomePageServlet.user.getCurrCal().getCalendarObjList().size());
+        request.setAttribute("calName",     HomePageServlet.user.getCurrCal().getName());
+        System.out.println(CalendarController.getCalendar(HomePageServlet.user.getUsername(), "test.txt").getName());
 
 
         /*
