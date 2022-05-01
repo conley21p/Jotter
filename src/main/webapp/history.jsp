@@ -7,10 +7,14 @@
 <body>
 
 <p>${error}</p>
+<a href="HomePageServlet">Homepage</a>
 
 <h1>Deleted Items</h1>
+<form action="/history" method="post">
     <c:forEach items="${assignments}" var="item">
-        -${item.getName()}  <form action="editAssign" method="get"><input type="submit"  value="edit" name="${item.getName()}" /></form>
+        -${item.getName()}
+        <button type="submit"  value="${item.getName()}" name="restore">Restore</button>
     </c:forEach>
+</form>
 </body>
 </html>
