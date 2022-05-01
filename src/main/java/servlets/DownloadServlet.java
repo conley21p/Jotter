@@ -15,16 +15,17 @@ public class DownloadServlet extends HttpServlet {
         String fileName = HomePageServlet.user.getCurrCal().getName();
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
         response.setContentType("APPLICATION/OCTET-STREAM");
-        response.setHeader("Content-Disposition","attachment; filename=\"" + fileName + "\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\""
+                + fileName + "\"");
 
-        FileInputStream fileInputStream = new FileInputStream(filePath + fileName);
+        FileInputStream fileInputStream = new FileInputStream(filePath
+                + fileName);
 
         int i;
-        while ((i=fileInputStream.read()) != -1) {
+        while ((i = fileInputStream.read()) != -1) {
             out.write(i);
         }
         fileInputStream.close();
         out.close();
     }
-
 }

@@ -34,7 +34,7 @@
 
     <button type="submit" name="decision" value="sortCalendar">Sort Current Calendar</button><br>
 </form>
-<a href="servlet/DownloadServlet">download the jsp file</a>
+<a href="/DownloadServlet">Export Current Calendar</a><br>
 <a href="/ImportCalendar">Import a Calendar</a><br>
 
 </form>
