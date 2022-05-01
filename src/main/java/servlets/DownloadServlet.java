@@ -13,10 +13,11 @@ public class DownloadServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/plain");
-        response.setHeader("Content-disposition", "attachment; filename=ts.txt");
+        response.setHeader("Content-disposition", "attachment; filename=calendar.txt");
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
         String fileName = HomePageServlet.user.getCurrCal().getName();
         String file = filePath + "/" + fileName;
+        System.out.println(file);
 
         try(InputStream in = request.getServletContext().getResourceAsStream(file);
             OutputStream out = response.getOutputStream()) {
