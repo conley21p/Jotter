@@ -34,7 +34,7 @@
 
     <button type="submit" name="decision" value="sortCalendar">Sort Current Calendar</button><br>
 </form>
-<a href="/DownloadServlet">Export Current Calendar</a><br>
+Guru Downloading File<a href="DownloadServlet">Download here!!!</a><br>
 <a href="/ImportCalendar">Import a Calendar</a><br>
 
 </form>
