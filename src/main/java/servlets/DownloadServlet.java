@@ -29,5 +29,6 @@ public class DownloadServlet extends HttpServlet {
         }
         fileInputStream.close();
         out.close();
+        System.out.println("T");
     }
 }
