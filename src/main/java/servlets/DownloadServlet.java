@@ -10,9 +10,9 @@ public class DownloadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Test");
 
         response.setContentType("text/html");
+        System.out.println("Test");
         PrintWriter out = response.getWriter();
         String fileName = HomePageServlet.user.getCurrCal().getName();
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
