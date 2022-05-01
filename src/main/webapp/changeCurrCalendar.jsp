@@ -17,7 +17,7 @@
 <h1>Calendars Available</h1>
 <h4>Names:</h4>
 <c:forEach items="${calendars}" var="item">
-    -${item} <form action="ChangeCurrCalendarServlet" method="post"><input type="submit"  value="Make Current" name="${item}" /></form>
+    -${item} <form action="ChangeCurrCalendar" method="post"><input type="submit"  value="Make Current" name="${item}" /></form>
 </c:forEach>
 </body>
 </html>
