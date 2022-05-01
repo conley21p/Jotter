@@ -2,6 +2,7 @@ package servlets;
 
 import account.AccountManager;
 import authenticator.LoginAuthenticator;
+import calendar.CalendarController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -40,6 +41,11 @@ public class ProfileServlet extends HttpServlet {
             else {
                 message = "Could not change password.";
             }
+        }
+        //sort calendar
+        else if (decision.equals("sortCalendar")) {
+            System.out.println("Test");
+            HomePageServlet.user.getCurrCal().sortCalendar();
         }
 
         request.setAttribute("message", message); // message or error to display to the user
