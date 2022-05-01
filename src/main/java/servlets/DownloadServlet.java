@@ -19,10 +19,10 @@ public class DownloadServlet extends HttpServlet {
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", "attachment; filename=\""
                 + fileName + "\"");
-        System.out.println("T");
 
         FileInputStream fileInputStream = new FileInputStream(filePath
                 + fileName);
+        System.out.println("T");
 
         int i;
         while ((i = fileInputStream.read()) != -1) {
