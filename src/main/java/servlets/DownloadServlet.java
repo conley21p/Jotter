@@ -17,9 +17,9 @@ public class DownloadServlet extends HttpServlet {
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
 
         response.setContentType("text/csv");
-        System.out.println("T");
         response.setHeader("Content-Disposition", "attachment; filename=\""
                 + fileName + "\"");
+        System.out.println("T");
 
         FileInputStream fileInputStream = new FileInputStream(filePath
                 + fileName);
