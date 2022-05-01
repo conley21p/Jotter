@@ -21,10 +21,10 @@ public class AnalyticsServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String message = null;
-        //int comAssignments = HomePageServlet.user.getCurrCal().generateAnalysis();
+        int comAssignments = HomePageServlet.user.getCurrCal().generateAnalysis();
         //int totalAssignments = HomePageServlet.user.getCurrCal().getCurrentSize();
 
-        message = "You have completed " + 0 + " out of " + 0 + " assignments.";
+        message = "You have completed " + comAssignments + " out of " + 0 + " assignments.";
 
         request.setAttribute("message", message);
         getServletContext().getRequestDispatcher("/analytics.jsp").forward(request, response);
