@@ -1,4 +1,4 @@
-<%@ page import="User.UserController" %>
+<%@ page import="User.User" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
