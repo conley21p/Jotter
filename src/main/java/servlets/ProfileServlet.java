@@ -54,16 +54,21 @@ public class ProfileServlet extends HttpServlet {
             String fileName = HomePageServlet.user.getCurrCal().getName();
             String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
 
-            response.setContentType("APPLICATION/OCTET-STREAM");
-            response.setHeader("Content-Disposition","attachment; filename=\"" + fileName + "\"");
-            java.io.OutputStream out = response.getOutputStream();
-            java.io.FileInputStream fileInputStream=new java.io.FileInputStream(filePath + fileName);
+            response.setContentType("text/plain");
+            response.setHeader("Content-disposition","attachment; filename=yourcustomfilename.txt");
 
-            int i;
-            while ((i=fileInputStream.read()) != -1) {
-                out.write(i);
+            java.io.File my_file = new java.io.File(fileName);
+
+
+            java.io.OutputStream out = response.getOutputStream();
+            java.io.FileInputStream in = new java.io.FileInputStream(filePath);
+            byte[] buffer = new byte[4096];
+            int length;
+            while ((length = in.read(buffer)) > 0){
+                out.write(buffer, 0, length);
             }
-            fileInputStream.close();
+            in.close();
+            out.flush();
         }
 
         request.setAttribute("message", message); // message or error to display to the user
