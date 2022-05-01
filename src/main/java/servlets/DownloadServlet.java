@@ -17,7 +17,7 @@ public class DownloadServlet extends HttpServlet {
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
         String fileName = HomePageServlet.user.getCurrCal().getName();
         String file = filePath + "/" + fileName;
-        System.out.println(file);
+        System.out.println("Path to file: " + file);
 
         try(InputStream in = request.getServletContext().getResourceAsStream(file);
             OutputStream out = response.getOutputStream()) {
@@ -26,6 +26,7 @@ public class DownloadServlet extends HttpServlet {
 
             int numBytesRead;
             while ((numBytesRead = in.read(buffer)) > 0) {
+                System.out.println("Test");
                 out.write(buffer, 0, numBytesRead);
             }
         }
