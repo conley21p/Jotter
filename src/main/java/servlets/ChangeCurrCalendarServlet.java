@@ -15,8 +15,6 @@ public class ChangeCurrCalendarServlet extends HttpServlet {
         request.setAttribute("assignments", HomePageServlet.user.getCurrCal().getCalendarObjList());
         request.setAttribute("size",        HomePageServlet.user.getCurrCal().getCalendarObjList().size());
         request.setAttribute("calName",     HomePageServlet.user.getCurrCal().getName());
-        System.out.println(CalendarController.getCalendar(HomePageServlet.user.getUsername(), "test.txt").getName());
-
 
         /*
             Send the user to the index(home page) with the list of assignments

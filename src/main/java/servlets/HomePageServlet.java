@@ -27,8 +27,6 @@ public class HomePageServlet extends HttpServlet {
         request.setAttribute("assignments", user.getCurrCal().getCalendarObjList());
         request.setAttribute("size",        user.getCurrCal().getCalendarObjList().size());
         request.setAttribute("calName",     user.getCurrCal().getName());
-        System.out.println(CalendarController.getCalendar(user.getUsername(), "test.txt").getName());
-
 
         /*
             Send the user to the index(home page) with the list of assignments
