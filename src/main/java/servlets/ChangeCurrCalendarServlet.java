@@ -25,6 +25,7 @@ public class ChangeCurrCalendarServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HomePageServlet.user.setCurrCal(CalendarController.getCalendar(HomePageServlet.user.getUsername(), "test.txt"));
         response.sendRedirect("/HomePageServlet");
     }
 }
