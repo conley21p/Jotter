@@ -98,6 +98,7 @@ public class Calendar {
             if (calendarObjList.get(i).getCompleted() != null)
                 completedAssignments++;
         }
+        System.out.println(completedAssignments);
         return completedAssignments;
     }
 
