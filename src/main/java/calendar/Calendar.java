@@ -53,7 +53,6 @@ public class Calendar {
         Get calender object from given name of list
      */
     public CalendarObject getCalendarObject(String name){
-        currentSize--;
         for (CalendarObject cal: this.calendarObjList) {
 //            System.out.println(cal.getName());
             if (cal.getName().equals(name)){
