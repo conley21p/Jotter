@@ -12,7 +12,6 @@ public class DownloadServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html");
-        System.out.println("Test");
         PrintWriter out = response.getWriter();
         String fileName = HomePageServlet.user.getCurrCal().getName();
         String filePath = utils.PathFinder.getAccountCalendarsPath(HomePageServlet.user.getUsername());
