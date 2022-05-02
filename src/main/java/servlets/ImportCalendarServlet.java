@@ -1,5 +1,4 @@
 package servlets;
-import calendar.CalendarController;
 import utils.PathFinder;
 
 import javax.servlet.*;
@@ -17,10 +16,6 @@ import java.io.IOException;
 public class ImportCalendarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("forward to ImportCalendar.jsp");
-        /*
-            Send user to the add assignment page
-         */
         getServletContext().getRequestDispatcher("/ImportCalendar.jsp").forward(request,response);
     }
 

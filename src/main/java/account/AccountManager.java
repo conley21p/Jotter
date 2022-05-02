@@ -36,6 +36,11 @@ public class AccountManager {
         isSuccess = calendarsDirectory.mkdir();
         System.out.println("Account " + username + " calendars directory made? " + isSuccess);
 
+        // creating new calendar directory
+        File fileDirectory = new File(accountDirectoryPath + "/Files");
+        isSuccess = fileDirectory.mkdir();
+        System.out.println("Account " + username + " files directory made? " + isSuccess);
+
         // creating starter calendar and deleted item calendar
         try {
             PrintWriter outfile = new PrintWriter(new FileWriter(new File(calendarsDirectory + "/School")));

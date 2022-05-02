@@ -15,15 +15,6 @@ public class ImportCalendarAfterSubmissionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String choice = request.getParameter("choice");
-//        System.out.println("choice" + choice);
-//        if (choice == "Yes"){
-//            System.out.println("forward to addAssignment.jsp");
-//            response.sendRedirect("addAssignment.jsp");
-//        }else{
-//            System.out.println("HomePageServlet.jsp");
-//            response.sendRedirect("/HomePageServlet");
-//        }
 
     }
 }

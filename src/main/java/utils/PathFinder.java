@@ -22,6 +22,11 @@ public class PathFinder {
         return userDirectoryPath + "/Calendars";
     }
 
+    public static String getAccountFilesPath(String username) {
+        String userDirectoryPath = getAccountDirectoryPath(username);
+        return userDirectoryPath + "/Files";
+    }
+
     public static String getJotterPath() {
         ClassLoader loader = PathFinder.class.getClassLoader();
         String tempPath = loader.getResource("utils/PathFinder.class").toString();
