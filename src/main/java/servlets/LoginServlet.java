@@ -14,10 +14,9 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // login off
-        /*
-        HomePageServlet.user = new User();
-         */
+        // logoff
+        HomePageServlet.user = null;
+
         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
