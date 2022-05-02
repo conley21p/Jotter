@@ -14,7 +14,7 @@
 
 <p>${message}</p>
 
-<h1>Upload File</h1>
+<h1>Upload/View File</h1>
 <a href="HomePageServlet">Back to Homepage</a><br><br>
 <form action="/UploadFile" method="post" enctype="multipart/form-data">
 
@@ -22,7 +22,6 @@
     <input type="file" id="newImage" name="newImage" accept="image/*">
     <button type="submit" name="decision" value="uploadFile">Upload Image</button><br><br><br><br>
 </form>
-
 
 </form>
 </body>
