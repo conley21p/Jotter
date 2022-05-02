@@ -1,6 +1,7 @@
 package calendar;
 
 import account.AccountManager;
+import servlets.HomePageServlet;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -70,6 +71,17 @@ public class Calendar {
         currentSize--;
         CalendarObject temp = this.calendarObjList.get(index);
         this.calendarObjList.remove(index);
+        System.out.println("Printing ObjectList after delete");
+        for (CalendarObject calObj : this.calendarObjList)
+        {
+            System.out.println(calObj.toString());
+        }
+        Calendar school = HomePageServlet.user.getCurrCal();
+        System.out.println("Printing SCHOOL ObjectList after delete");
+        for (CalendarObject calObj : school.getCalendarObjList())
+        {
+            System.out.println(calObj.toString());
+        }
         //  Remove empty space in list
 
         return temp;

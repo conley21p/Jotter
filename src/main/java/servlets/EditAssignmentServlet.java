@@ -69,7 +69,7 @@ public class EditAssignmentServlet extends HttpServlet {
         } else if (request.getParameter("button").compareTo("Delete") == 0) {
             int index = HomePageServlet.user.getCurrCal().getCalendarObjList().indexOf(editingObject);
             System.out.println("Index of deleting object is:" + index);
-            //  Delete Object from the list
+            //  Delete Object from database
             CalendarObject deleted = CalendarController.deleteCalendarObject(index);
             deleted.saveToDataBase(HomePageServlet.user.getUsername(), "DELETED_ITEMS");
             response.sendRedirect("HomePageServlet");
