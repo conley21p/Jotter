@@ -27,28 +27,6 @@ public class UploadFileServlet extends HttpServlet {
         currentAssignment = (Assignment) HomePageServlet.user.getCurrCal().getCalendarObject(assignName);
         request.setAttribute("CalObj", currentAssignment);
 
-        if (currentAssignment.getFileName() != null) {
-            String filePath = PathFinder.getAccountFilesPath(HomePageServlet.user.getUsername());
-            String fileName = currentAssignment.getFileName();
-            response.setContentType("image/jpeg");
-            ServletOutputStream out;
-            out = response.getOutputStream();
-            FileInputStream fin = new FileInputStream(filePath + File.separator + fileName);
-            System.out.println(filePath + File.separator + fileName);
-
-            BufferedInputStream bin = new BufferedInputStream(fin);
-            BufferedOutputStream bout = new BufferedOutputStream(out);
-            int ch =0; ;
-            while((ch=bin.read())!=-1)
-            {
-                bout.write(ch);
-            }
-
-            bin.close();
-            fin.close();
-            bout.close();
-            out.close();
-        }
         getServletContext().getRequestDispatcher("/uploadFile.jsp").forward(request,response);
     }
 

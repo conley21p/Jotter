@@ -6,7 +6,7 @@ public class PathFinder {
     public static String getAccountDirectoryPath(String username) {
         String jotterPath = getJotterPath();
         //For Jacob's use
-        //jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
+        jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
         String userDirectoryPath = jotterPath + "/src/main/java/account/accounts/" + username;
         System.out.println("userDirectoryPath: " + userDirectoryPath);
         return userDirectoryPath;
