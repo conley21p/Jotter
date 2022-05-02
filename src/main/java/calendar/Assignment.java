@@ -2,6 +2,7 @@ package calendar;
 
 public class Assignment extends CalendarObject{
     private String completed;
+    private String fileName;
 
     //  Used When adding new assignmnet, so it is okay to assume assignment is not completed
     public Assignment(String name,
@@ -23,7 +24,8 @@ public class Assignment extends CalendarObject{
                 this.getName() + "," +
                 this.getDescription() + "," +
                 this.getCourse() + "," +
-                this.getCompleted();
+                this.getCompleted() + "," +
+                this.getFileName();
     }
 
     @Override
@@ -52,4 +54,8 @@ public class Assignment extends CalendarObject{
     public void setCompleted(String completed) {
         this.completed = completed;
     }
+
+    public String getFileName() { return fileName;}
+
+    public void setFileName(String fileName) {this.fileName = fileName;}
 }
