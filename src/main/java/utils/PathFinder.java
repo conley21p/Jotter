@@ -3,38 +3,31 @@ package utils;
 import java.io.File;
 
 public class PathFinder {
-    public String findUserDirectory(String username) {
+    public static String getAccountDirectoryPath(String username) {
         String jotterPath = getJotterPath();
+        //For Jacob's use
+        //jotterPath = "C:/Users/Jacob Radtke/IdeaProjects/Jotter";
         String userDirectoryPath = jotterPath + "/src/main/java/account/accounts/" + username;
-        System.out.println("Jotter:: " + jotterPath);
-        System.out.println("User:: " + userDirectoryPath);
-
-        File userDirectory = new File(userDirectoryPath);
-        if (userDirectory.isDirectory()) {
-            return userDirectoryPath;
-        }
-        return null;
+        System.out.println("userDirectoryPath: " + userDirectoryPath);
+        return userDirectoryPath;
     }
 
-    public String findUserInformation(String username) {
-        String userDirectoryPath = findUserDirectory(username);
-        if (userDirectoryPath != null) {
-            System.out.println("findUserCalendars(" + username + ") = " + userDirectoryPath + "/" + username);
-        return userDirectoryPath + "/" + username;
-        }
-        return null;
+    public static String getAccountInformationPath(String username) {
+        String userDirectoryPath = getAccountDirectoryPath(username);
+        return userDirectoryPath + "/accountInfo";
     }
 
-    public String findUserCalendars(String username) {
-        String userDirectoryPath = findUserDirectory(username);
-        if (userDirectoryPath != null) {
-            System.out.println("findUserCalendars(" + username + ") = " + userDirectoryPath + "/calendars");
-            return userDirectoryPath + "/" + username;
-        }
-        return null;
+    public static String getAccountCalendarsPath(String username) {
+        String userDirectoryPath = getAccountDirectoryPath(username);
+        return userDirectoryPath + "/Calendars";
     }
 
-    private String getJotterPath() {
+    public static String getAccountFilesPath(String username) {
+        String userDirectoryPath = getAccountDirectoryPath(username);
+        return userDirectoryPath + "/Files";
+    }
+
+    public static String getJotterPath() {
         ClassLoader loader = PathFinder.class.getClassLoader();
         String tempPath = loader.getResource("utils/PathFinder.class").toString();
         return tempPath.substring(6, tempPath.indexOf("Jotter") + 6);

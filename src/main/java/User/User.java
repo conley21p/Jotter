@@ -4,13 +4,15 @@ import calendar.Calendar;
 
 public class User {
     private String username;
+    private String password;
     private String[] CalendarNames;
     private Calendar currCal;
 
-    public User(String usrName,
+    public User(String usrName, String password,
                 String[] calNames,
                 Calendar cal){
         this.username = usrName;
+        this.password = password;
         this.CalendarNames = calNames;
         this.currCal = cal;
     }
@@ -28,6 +30,10 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public String getPassword() { return this.password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public String[] getCalendarNames() {
         return CalendarNames;

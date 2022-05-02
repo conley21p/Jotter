@@ -1,8 +1,10 @@
 package calendar;
 
 import account.AccountManager;
+import servlets.HomePageServlet;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Calendar {
     private ArrayList<CalendarObject> calendarObjList;
@@ -52,7 +54,6 @@ public class Calendar {
         Get calender object from given name of list
      */
     public CalendarObject getCalendarObject(String name){
-        currentSize--;
         for (CalendarObject cal: this.calendarObjList) {
 //            System.out.println(cal.getName());
             if (cal.getName().equals(name)){
@@ -70,6 +71,17 @@ public class Calendar {
         currentSize--;
         CalendarObject temp = this.calendarObjList.get(index);
         this.calendarObjList.remove(index);
+        System.out.println("Printing ObjectList after delete");
+        for (CalendarObject calObj : this.calendarObjList)
+        {
+            System.out.println(calObj.toString());
+        }
+        Calendar school = HomePageServlet.user.getCurrCal();
+        System.out.println("Printing SCHOOL ObjectList after delete");
+        for (CalendarObject calObj : school.getCalendarObjList())
+        {
+            System.out.println(calObj.toString());
+        }
         //  Remove empty space in list
 
         return temp;
@@ -83,6 +95,25 @@ public class Calendar {
     public void setCalendarObjList(ArrayList<CalendarObject> calendarObjList) {
         this.calendarObjList = calendarObjList;
     }
+
+    public void sortCalendar()
+    {
+        Collections.sort(this.calendarObjList, CalendarObject.CalCourseComparator);
+    }
+
+    public int generateAnalysis()
+    {
+        int completedAssignments = 0;
+        for (int i = 0; i < currentSize; i++)
+        {
+            Assignment assign = (Assignment) calendarObjList.get(i);
+            if (assign.getCompleted().contains("20"))
+                completedAssignments++;
+        }
+        System.out.println(completedAssignments);
+        return completedAssignments;
+    }
+
     public int getCurrentSize() {
         return currentSize;
     }

@@ -1,5 +1,7 @@
 package authenticator;
 
+import utils.PathFinder;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -7,24 +9,16 @@ import java.util.Scanner;
 public class LoginAuthenticator {
     public static boolean authenticate(String user, String pass) {
         // getting the right file path
-        ClassLoader loader = LoginAuthenticator.class.getClassLoader();
-        String tempPath = loader.getResource("authenticator/LoginAuthenticator.class").toString();
-
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = "/" + jotterPath + "/src/main/java/account/accounts";
-        System.out.println("Jotter:: " + jotterPath);
-        System.out.println("Accounts:: " + accountsPath);
-
-        String userAccountInfoPath = accountsPath + "/" + user + "/accountInfo";
+        String userAccountInfoPath = PathFinder.getAccountInformationPath(user);
 
         File userFile = new File(userAccountInfoPath);
-        System.out.println("test:"+ userAccountInfoPath);
+        System.out.println("test:" + userAccountInfoPath);
         if (userFile.exists()) {
             try {
-                System.out.println("test2");
                 Scanner scan = new Scanner(userFile);
                 String userInfo = scan.nextLine();
                 String segments[] = userInfo.split(",");
+                scan.close();
                 if (segments[1].equals(pass)) {
                     return true;
                 }
@@ -37,5 +31,11 @@ public class LoginAuthenticator {
         }
 
         return false;
+    }
+
+    public static boolean isAvailableUsername(String username) {
+        String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
+        File accountDirectory = new File(accountDirectoryPath);
+        return !(accountDirectory.isDirectory());
     }
 }

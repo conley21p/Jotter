@@ -1,52 +1,43 @@
 package calendar;
 
 import account.AccountManager;
+import utils.PathFinder;
 
 import java.io.*;
+import java.util.Comparator;
 
-public class CalendarObject {
+public abstract class CalendarObject {
     private String name;
     private Date date;
     private Time time;
     private String description;
+    private String course;
 
-    /*
-      Main Constructor
-       String format needs to be:
-            "name:name, date:date, time:time, desc:description"
-               -    Spaces are optional
-     */
-    public CalendarObject(String obj){
-        System.out.println("Stringobj:"+obj);
-        String temp[] = obj.split(",");
-        this.name       = temp[0];
-        this.date       = new Date(temp[1]);
-        if (!temp[2].isEmpty()){
-            this.time       = new Time(temp[2]);
-        }
-        if (temp.length > 3){
-            this.description= temp[3];
-        }
-    }
-
-    //  Overloaded constructor
+        //  constructor
     public CalendarObject(String name,
                           Date date,
                           Time time,
-                          String description){
+                          String description,
+                          String course){
+        name.replaceAll(","," ");
+        description.replaceAll(","," ");
+        course.replaceAll(",", " ");
         this.name           = name;
         this.date           = date;
         this.time           = time;
         this.description    = description;
+        this.course         = course;
     }
     public CalendarObject(String name,
                           String date,
                           String time,
-                          String description){
+                          String description,
+                          String course){
         this.name           = name;
         this.date           = new Date(date);
         this.time           = new Time(time);
         this.description    = description;
+        this.course         = course;
     }
 
     /*
@@ -54,14 +45,12 @@ public class CalendarObject {
      */
     public void saveToDataBase(String username,
                                    String calenderName){
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
+        String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + calenderName;
+        System.out.println("CalPath:"+calendarPath);
 
         // Open Calender object is in
         try {
-            File file = new File(accountsPath);
+            File file = new File(calendarPath);
             File temp = File.createTempFile("temp-file-name", ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(temp));
@@ -72,7 +61,7 @@ public class CalendarObject {
 
                     String templine[] =  line.split(",");
                     Date tempDate = new Date(templine[0]);
-                    System.out.println("Date to string is:" + tempDate.toString());
+                    //System.out.println("Date to string is:" + tempDate.toString());
                     if (this.date.compare(tempDate) < 0 && addedFlag){
                         pw.println(this.toString());
                         addedFlag = false;
@@ -92,7 +81,7 @@ public class CalendarObject {
             file.delete();
             temp.renameTo(file);
         }catch (IOException e) {
-            System.out.println("Problem saving assignment to database");
+            System.out.println("Problem saving assignment to database1");
             //return false;
         }
     //return true;
@@ -100,36 +89,42 @@ public class CalendarObject {
     /*
      *  This method is used to save calendar object to database
      */
-    public void edit(String updatedString){
+    public void edit(String name,
+                     Date date,
+                     Time time,
+                     String description,
+                     String course){
+        name.replaceAll(","," ");
+        description.replaceAll(","," ");
+        course.replaceAll(","," ");
         //  ParseUpdated string
-        String[] attrs = updatedString.split(",");
-        if (!this.name.equals(attrs[0])){
-            this.setName(attrs[0]);
+        if (!this.name.equals(name)){
+            this.setName(name);
         }
-//        if  (!this.date.equals(attrs[1])){
-//            this.setDate(new Date(attrs[1]));
-//        }
-        if (!this.time.equals(attrs[2])){
-            this.setTime(new Time(attrs[2]));
+        if  (!this.date.equals(date)){
+            this.setDate(date);
         }
-        if (!this.description.equals(attrs[3])){
-            this.setDescription(attrs[3]);
+        if (!this.time.equals(time)){
+            this.setTime(time);
         }
-        //Update database
+        if (!this.description.equals(description)){
+            this.setDescription(description);
+        }
+        if (!this.course.equals(course)){
+            this.setCourse(course);
+        }
     }
     /*
      *  This method is used to save calendar object to database
      */
     public void updateToDataBase(String username,
                                  String calenderName){
-        ClassLoader loader = AccountManager.class.getClassLoader();
-        String tempPath = loader.getResource("account/AccountManager.class").toString();
-        String jotterPath = tempPath.substring(6, tempPath.indexOf("Jotter") + 6);
-        String accountsPath = jotterPath + "/src/main/java/Account/Accounts/" + username + "/Calendars/" + calenderName + "/";
+        String calendarPath = PathFinder.getAccountCalendarsPath(username);
+        calendarPath = calendarPath + "/" +calenderName;
 
         // Open Calender object is in
         try {
-            File file = new File(accountsPath);
+            File file = new File(calendarPath);
             File temp = File.createTempFile("temp-file-name", ".tmp");
             BufferedReader br = new BufferedReader(new FileReader(file));
             PrintWriter pw = new PrintWriter(new FileWriter(temp));
@@ -139,7 +134,7 @@ public class CalendarObject {
                 do{
                     String templine[] =  line.split(",");
                     Date tempDate = new Date(templine[0]);
-                    System.out.println("Date to string is:" + tempDate.toString());
+                    //System.out.println("Date to string is:" + tempDate.toString());
                     if (this.date.compare(tempDate) == 0 && addedFlag){
                         pw.println(this.toString());
                         addedFlag = false;
@@ -168,6 +163,19 @@ public class CalendarObject {
         return this.date.toString() + ","  + this.time.toString() + ",CalObj," + this.name + "," + this.description;
     }
 
+
+    public static Comparator<CalendarObject> CalCourseComparator = new Comparator<CalendarObject>() {
+
+        public int compare(CalendarObject c1, CalendarObject c2) {
+            String CourseName1 = c1.getCourse().toUpperCase();
+            String CourseName2 = c2.getCourse().toUpperCase();
+
+            //ascending order
+            return CourseName1.compareTo(CourseName2);
+
+            //descending order
+            //return StudentName2.compareTo(StudentName1);
+        }};
     /*
         GETTERs & SETTERs
      */
@@ -203,4 +211,15 @@ public class CalendarObject {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getCourse() {return course;}
+
+    public void setCourse(String course) {this.course = course;}
+
+    public abstract void edit(String name,
+                              Date date,
+                              Time time,
+                              String description,
+                              String course,
+                              String status);
 }

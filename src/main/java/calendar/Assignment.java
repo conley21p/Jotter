@@ -2,15 +2,18 @@ package calendar;
 
 public class Assignment extends CalendarObject{
     private String completed;
+    private String fileName;
 
-    public Assignment(String obj) {
-        super(obj);
-        this.completed = "null";
-    }
-
-    public Assignment(String name, Date date, Time time, String description) {
-        super(name, date, time, description);
-        this.completed = "null";
+    //  Used When adding new assignmnet, so it is okay to assume assignment is not completed
+    public Assignment(String name,
+                      Date date,
+                      Time time,
+                      String description,
+                      String course,
+                      String status) {
+        super(name, date, time, description, course);
+        status.replaceAll(","," ");
+        this.completed = status;
     }
 
     @Override
@@ -20,16 +23,24 @@ public class Assignment extends CalendarObject{
                 "A," +
                 this.getName() + "," +
                 this.getDescription() + "," +
-                this.getCompleted();
+                this.getCourse() + "," +
+                this.getCompleted() + "," +
+                this.getFileName();
     }
 
     @Override
-    public void edit(String updatedString) {
-        super.edit(updatedString);
-        String[] attrs = updatedString.split(",");
-        if (attrs.length >= 4){
-            this.setCompleted(attrs[4]);
-        }
+    public void edit(String name,
+                     Date date,
+                     Time time,
+                     String description,
+                     String course,
+                     String status) {
+        super.edit(name,
+                    date,
+                    time,
+                    description,
+                    course);
+        this.setCompleted(status);
     }
 
     /*
@@ -43,4 +54,8 @@ public class Assignment extends CalendarObject{
     public void setCompleted(String completed) {
         this.completed = completed;
     }
+
+    public String getFileName() { return fileName;}
+
+    public void setFileName(String fileName) {this.fileName = fileName;}
 }

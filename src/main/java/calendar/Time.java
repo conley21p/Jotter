@@ -10,7 +10,7 @@ public class Time {
                             - Seconds will not be stored
      */
     public Time(String time){
-        System.out.println("Time:time:"+time);
+        //System.out.println("Time:time:"+time);
         String temp[] = time.split(":");
         this.hour   = Integer.parseInt(temp[0]);
         this.min    = Integer.parseInt(temp[1]);

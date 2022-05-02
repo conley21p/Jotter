@@ -25,6 +25,9 @@
     <h4>description:</h4><label>
     <input type="text" name="description" />
 </label>
+    <h4>course:</h4><label>
+    <input type="text" name="course" />
+</label>
     <h4></h4><input type="submit" />
 </form>
 </body>

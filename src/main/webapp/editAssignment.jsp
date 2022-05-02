@@ -14,23 +14,27 @@
 <form action="editAssign" method="post">
     <h4>Name:*</h4><label>
     <input type="text" name="name" value="${CalObj.getName()}"/>
-    <%--
 </label>
     <h4>Due Date:*</h4><label>
-    <input type="date" name="date" value="${CalObj.getDate()}" pattern="yyyy-m-dd"/>
+    <input type="date" name="date" value="${CalObj.getDate().toString()}" pattern="yyyy-m-dd"/>
 </label>
-    --%>
     <h4>Due Time:*</h4><label>
     <input type="time" name="time" value="${CalObj.getTime()}"/>
 </label>
     <h4>description:</h4><label>
     <input type="text" name="description" value="${CalObj.getDescription()}"  />
 </label>
+    </label>
+    <h4>course:</h4><label>
+    <input type="text" name="course" value="${CalObj.getCourse()}"/>
 </label>
     <h4>Completed:</h4><label>
-    <input type="checkbox" name="status" id="status" value="completed" ${CalObj.getCompleted()!= "null" ? 'checked' : ''}>
+    <input type="checkbox" name="status" id="status" value="completed" ${CalObj.getCompleted()!= "null" ? 'checked' : 'unchecked'}>
 </label>
-    <h4></h4><input type="submit" />
+    <h4></h4><input type="submit" name="button" value="Update" />
+    <input type="submit" name="button", value="Create Copy"/>
+    <input type="submit" name="button", value="Delete"/>
+    <input type="submit" name="button", value="Return To Home Page"/>
 </form>
 
 </body>
