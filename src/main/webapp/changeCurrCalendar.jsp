@@ -12,7 +12,7 @@
     <title>Calendars Available - Jotter</title>
 </head>
 <body>
-<a href="HomePageServlet">Back to Homepage</a><br><br>
+<a href="HomePageServlet">Back to Homepage</a><br>
 
 <h1>Calendars Available</h1>
 <h4>Names:</h4>

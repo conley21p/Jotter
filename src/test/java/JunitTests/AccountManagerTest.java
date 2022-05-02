@@ -46,7 +46,7 @@ class AccountManagerTest {
     @Test
     void changePassword() {
         assertEquals(true, AccountManager.createAccount(testUsername2, testPassword1, testEmail1));
-        assertEquals(true, AccountManager.changePassword("NEW_PASSWORD"));
+        assertEquals(true, AccountManager.changePassword(testUsername2, "NEW_PASSWORD"));
         assertEquals("NEW_PASSWORD", HomePageServlet.user.getPassword());
 
         // cleanup

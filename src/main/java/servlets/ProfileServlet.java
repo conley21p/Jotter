@@ -1,8 +1,6 @@
 package servlets;
 
 import account.AccountManager;
-import authenticator.LoginAuthenticator;
-import calendar.CalendarController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -28,14 +26,14 @@ public class ProfileServlet extends HttpServlet {
         // delete account
         if (decision.equals("deleteAccount")) {
             if (AccountManager.deleteAccount(HomePageServlet.user.getUsername())) {
-                System.out.println("Account " + HomePageServlet.user.getUsername() + " was deleted.");
+                System.out.println("account " + HomePageServlet.user.getUsername() + " was deleted.");
                 getServletContext().getRequestDispatcher("/login.jsp").forward(request, response); // return to profile page
             }
         }
         // change password
         else if (decision.equals("changePassword")) {
             String newPassword = request.getParameter("newPassword");
-            if (AccountManager.changePassword(newPassword)) {
+            if (AccountManager.changePassword(HomePageServlet.user.getUsername(), newPassword)) {
                 System.out.println("Changed password to " + newPassword);
                 message = "Password change successful.";
             }

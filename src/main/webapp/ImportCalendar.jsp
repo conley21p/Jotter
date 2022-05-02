@@ -13,9 +13,9 @@
 <body>
 
 <p>${message}</p>
+<a href="HomePageServlet">Back to Homepage</a><br>
 
 <h1>Calendar</h1>
-<a href="HomePageServlet">Back to Homepage</a><br><br>
 <form action="/ImportCalendar" method="post" enctype="multipart/form-data">
 
     <label for="newCal">Upload Calendar:</label>

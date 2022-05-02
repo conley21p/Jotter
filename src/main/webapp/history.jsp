@@ -7,7 +7,7 @@
 <body>
 
 <p>${error}</p>
-<a href="HomePageServlet">Homepage</a>
+<a href="HomePageServlet">Back to Homepage</a>
 
 <h1>Deleted Items</h1>
 <form action="/history" method="post">
