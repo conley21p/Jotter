@@ -1,8 +1,6 @@
 package servlets;
 
 import account.AccountManager;
-import authenticator.LoginAuthenticator;
-import calendar.CalendarController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -35,7 +33,7 @@ public class ProfileServlet extends HttpServlet {
         // change password
         else if (decision.equals("changePassword")) {
             String newPassword = request.getParameter("newPassword");
-            if (AccountManager.changePassword(newPassword)) {
+            if (AccountManager.changePassword(HomePageServlet.user.getUsername(), newPassword)) {
                 System.out.println("Changed password to " + newPassword);
                 message = "Password change successful.";
             }

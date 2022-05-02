@@ -17,7 +17,6 @@ public class AccountManager {
         String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
         File accountDirectory = new File(accountDirectoryPath);
         isSuccess = accountDirectory.mkdir();
-        System.out.println("Account " + username + " made? " + isSuccess);
 
         // creating new information file
         File accountInfo = new File(accountDirectoryPath + "/accountInfo");
@@ -55,12 +54,13 @@ public class AccountManager {
             isSuccess = false;
         }
 
+        System.out.println("Account " + username + " made? " + isSuccess);
         return isSuccess;
     }
 
     public static boolean deleteAccount(String username) {
         boolean isSuccess = false;
-        String accountDirectoryPath = PathFinder.getAccountDirectoryPath(username);
+        String accountDirectoryPath = PathFinder.getAccountDirectoryPath(HomePageServlet.user.getUsername());
 
         // deleting account directory
         File accountDirectory = new File(accountDirectoryPath);
@@ -69,13 +69,16 @@ public class AccountManager {
             if (deleteDirectory(accountDirectory))
                 isSuccess = true;
         }
+
         System.out.println("Account " + username + " is deleted? " + isSuccess);
         return isSuccess;
     }
 
-    public static boolean changePassword(String newPassword) {
+    public static boolean changePassword(String username, String newPassword) {
         boolean isSuccess = true;
-        File accountInfoFile = new File(PathFinder.getAccountInformationPath(HomePageServlet.user.getUsername()));
+        File accountInfoFile = new File(PathFinder.getAccountInformationPath(username));
+
+        // change password in accountInfo file
         try {
             Scanner infile = new Scanner(accountInfoFile);
             String contents = infile.nextLine();
@@ -89,6 +92,8 @@ public class AccountManager {
         catch (IOException e) {
             isSuccess = false;
         }
+
+        System.out.println("Password changed to " + newPassword + "? " + isSuccess);
         return isSuccess;
     }
 
@@ -107,7 +112,8 @@ public class AccountManager {
             }
         }
         isSuccess = directory.delete();
-        System.out.println("Deleting " + directory.getName() + ": " + isSuccess);
+
+        System.out.println("Deleted " + directory.getName() + "? " + isSuccess);
         return isSuccess;
     }
 }

@@ -6,6 +6,7 @@
 <body>
 
 <p>${error}</p>
+<a href="/login">Back to Login</a><br>
 
 <h1>Create an account</h1>
 <form action="/register" method="post">
