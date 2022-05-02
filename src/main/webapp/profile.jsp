@@ -16,7 +16,7 @@
     <input type="text" id="newPassword" name="newPassword">
     <button type="submit" name="decision" value="changePassword">Change Password</button><br><br><br>
 
-    <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete Account</button><br><br>
+    <button type="submit" name="decision" value="deleteAccount" onClick="confirmDelete">Delete account</button><br><br>
 
     <button type="submit" name="decision" value="sortCalendar">Sort Current Calendar</button><br>
 </form>

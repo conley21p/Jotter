@@ -33,12 +33,12 @@ public class AccountManager {
         // creating new calendar directory
         File calendarsDirectory = new File(accountDirectoryPath + "/Calendars");
         isSuccess = calendarsDirectory.mkdir();
-        System.out.println("Account " + username + " calendars directory made? " + isSuccess);
+        System.out.println("account " + username + " calendars directory made? " + isSuccess);
 
         // creating new calendar directory
         File fileDirectory = new File(accountDirectoryPath + "/Files");
         isSuccess = fileDirectory.mkdir();
-        System.out.println("Account " + username + " files directory made? " + isSuccess);
+        System.out.println("account " + username + " files directory made? " + isSuccess);
 
         // creating starter calendar and deleted item calendar
         try {
@@ -54,7 +54,7 @@ public class AccountManager {
             isSuccess = false;
         }
 
-        System.out.println("Account " + username + " made? " + isSuccess);
+        System.out.println("account " + username + " made? " + isSuccess);
         return isSuccess;
     }
 
@@ -70,7 +70,7 @@ public class AccountManager {
                 isSuccess = true;
         }
 
-        System.out.println("Account " + username + " is deleted? " + isSuccess);
+        System.out.println("account " + username + " is deleted? " + isSuccess);
         return isSuccess;
     }
 
