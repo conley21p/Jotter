@@ -43,6 +43,7 @@ public class UploadFileServlet extends HttpServlet {
             fileName = part.getSubmittedFileName();
             if (fileName != null){
                 part.write(uploadPath + File.separator + fileName);
+                break;
             }
         }
         currentAssignment.setFileName(fileName);
