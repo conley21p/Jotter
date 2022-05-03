@@ -2,9 +2,14 @@ package calendar;
 
 import account.AccountManager;
 import servlets.HomePageServlet;
+import utils.PathFinder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Calendar {
     private ArrayList<CalendarObject> calendarObjList;
@@ -115,9 +120,44 @@ public class Calendar {
         return completedAssignments;
     }
 
+//    //TODO Generate Time Slots
+//    public void generateTimeSlots() {
+//
+//    }
+//
+//    //TODO method to help with generating time slots
+//    public int[][] getCalendarObjDates(String username, String calName, int objects) {
+//        String[] segments = new String[objects];
+//        String calPath = PathFinder.getAccountCalendarsPath(username) + "/" + calName;
+//        File calFile = new File(calPath);
+//        if (calFile.exists()) {
+//            for (int i = 0; i < objects; i++) {
+//                try {
+//                    Scanner scan = new Scanner(calFile);
+//                    String calInfo = scan.nextLine();
+//                    segments = calInfo.split(",");
+//                    scan.close();
+//                } catch (FileNotFoundException e) {
+//                    System.out.println("Could not find Calendar");
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        String[] fullDates = new String[objects];
+//        for (int i = 0; i < objects; i++) {
+//            fullDates[i] = segments[i].substring(0, 10);
+//        }
+//        int[][] dates = new int[objects][3];
+//        for (int j = 0; j < objects; j++) {
+//
+//        }
+//        return dates;
+//    }
+
     public int getCurrentSize() {
         return currentSize;
     }
+
     public void setCurrentSize(int currentSize) {
         this.currentSize = currentSize;
     }

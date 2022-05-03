@@ -15,6 +15,7 @@
 <a href="/ChangeCurrCalendar">Change Calendar</a><br>
 <a href="/deleteCalendar">Delete Calendar</a><br>
 <a href="/history">Assignment History</a><br>
+<%-- <a href="/generateTimeSlots">Find Free Time</a><br> --%>
 <a href="/Analytic">Analytics</a><br>
 <h1><%= " Today's TO-DO List" %></h1>
 <h1>Assignments:</h1>

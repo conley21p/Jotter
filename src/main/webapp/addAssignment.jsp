@@ -20,7 +20,7 @@
     <input type="date" name="date" required/>
 </label>
     <h4>Due Time:*</h4><label>
-    <input type="time" name="time" value="23:50" required/>
+    <input type="time" name="time" value="23:55" required/>
 </label>
     <h4>description:</h4><label>
     <input type="text" name="description" />
