@@ -15,9 +15,10 @@ public class ChangeCurrCalendarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<String> cals = new ArrayList<String>();
-        for (int i = 1; i < HomePageServlet.user.getCalendarNames().length; i++){
-            if (HomePageServlet.user.getCalendarNames()[i] != null)
-                cals.add(i - 1, HomePageServlet.user.getCalendarNames()[i]);
+        HomePageServlet.user.getCalendarNames();
+        for (int i = 1; i < CalendarController.getCalendarNameList(HomePageServlet.user.getUsername()).length; i++){
+            if (CalendarController.getCalendarNameList(HomePageServlet.user.getUsername())[i] != null)
+                cals.add(i - 1, CalendarController.getCalendarNameList(HomePageServlet.user.getUsername())[i]);
         }
         request.setAttribute("calendars", cals);
         request.setAttribute("size", HomePageServlet.user.getCalendarNames().length);
