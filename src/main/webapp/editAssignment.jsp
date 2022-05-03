@@ -36,6 +36,8 @@
     <input type="submit" name="button", value="Delete"/>
     <input type="submit" name="button", value="Return To Home Page"/>
 </form>
+<form action="/UploadFile" method="get"><input type="submit"  value="Upload File" name="${CalObj.getName()}" /></form>
+<form action="/ViewFile" method="get"><input type="submit"  value="View File" name="${CalObj.getName()}" /></form>
 
 </body>
 </html>

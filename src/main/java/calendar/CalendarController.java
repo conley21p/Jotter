@@ -76,13 +76,15 @@ public class CalendarController {
                 //System.out.println("Object type:"+objType);
                 if (objType.equals("A")){
                     String status = templine[6];
+                    String filename = templine[7];
                     defaultCal.addNewToCalendarObjList( username,
                                                         new Assignment(nameString,
                                                                        new Date(dateString),
                                                                        new Time(timeString),
                                                                        descString,
                                                                        course,
-                                                                       status));
+                                                                       status,
+                                                                       filename));
                 }
 
             }

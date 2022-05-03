@@ -10,10 +10,14 @@ public class Assignment extends CalendarObject{
                       Time time,
                       String description,
                       String course,
-                      String status) {
+                      String status,
+                      String fileName) {
         super(name, date, time, description, course);
-        status.replaceAll(","," ");
+        if (status != null){
+            status = status.replace(",","");
+        }
         this.completed = status;
+        this.fileName = fileName;
     }
 
     @Override
@@ -29,18 +33,23 @@ public class Assignment extends CalendarObject{
     }
 
     @Override
-    public void edit(String name,
-                     Date date,
-                     Time time,
-                     String description,
-                     String course,
-                     String status) {
-        super.edit(name,
-                    date,
-                    time,
-                    description,
-                    course);
-        this.setCompleted(status);
+    public boolean edit(String name,
+                        Date date,
+                        Time time,
+                        String description,
+                        String course,
+                        String status) {
+        boolean result = super.edit(name,
+                                    date,
+                                    time,
+                                    description,
+                                    course);
+        try{
+            this.setCompleted(status);
+        }catch (Exception e){
+            return false;
+        }
+        return result;
     }
 
     /*
