@@ -6,6 +6,7 @@ import utils.PathFinder;
 
 import java.io.*;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 public class CalendarController {
 
@@ -66,7 +67,7 @@ public class CalendarController {
         }catch (NullPointerException e){
             System.out.println("List of all files NUll pointer error");
         }
-        System.out.println("Return calender names list is " + calNames.toString());
+        System.out.println("Return calender names list is " + Arrays.toString(calNames));
         return calNames;
     }
 
