@@ -16,20 +16,6 @@ public class HistoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Calendar deletedItemsCalendar = CalendarController.getCalendar(HomePageServlet.user.getUsername(), "DELETED_ITEMS");
-        Calendar currCalendar = HomePageServlet.user.getCurrCal();
-
-        // manual testing... oof
-        System.out.println("deleted");
-        for (int i = 0; i < deletedItemsCalendar.getCalendarObjList().size(); i++) {
-            System.out.println(deletedItemsCalendar.getCalendarObjList().get(i).toString());
-        }
-        System.out.println("School");
-        for (int i = 0; i < currCalendar.getCalendarObjList().size(); i++) {
-            System.out.println(deletedItemsCalendar.getCalendarObjList().get(i).toString());
-        }
-
-
-
 
         request.setAttribute("assignments", deletedItemsCalendar.getCalendarObjList());
         request.setAttribute("size",    deletedItemsCalendar.getCalendarObjList().size());
