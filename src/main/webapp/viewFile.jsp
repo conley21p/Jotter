@@ -11,6 +11,6 @@
     <title>View File</title>
 </head>
 <body>
-
+    No File to view.
 </body>
 </html>

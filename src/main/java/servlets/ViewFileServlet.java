@@ -36,32 +36,23 @@ public class ViewFileServlet extends HttpServlet {
         //This is what's causing the download
         response.setContentType("image/png");
 
-        ServletOutputStream out;
+        if (fileName != null) {
+            ServletOutputStream out;
+            out = response.getOutputStream();
+            FileInputStream flinp = new FileInputStream(filePath + "/" + fileName);
+            BufferedInputStream buffinp = new BufferedInputStream(flinp);
+            BufferedOutputStream buffoup = new BufferedOutputStream(out);
 
-        out = response.getOutputStream();
+            int ch = 0;
+            while ((ch = buffinp.read()) != -1) {
+                buffoup.write(ch);
+            }
 
-        FileInputStream flinp = new FileInputStream(filePath + "/" + fileName);
-
-        BufferedInputStream buffinp = new BufferedInputStream(flinp);
-
-        BufferedOutputStream buffoup = new BufferedOutputStream(out);
-
-        int ch=0;
-
-        while ((ch=buffinp.read()) != -1) {
-
-            buffoup.write(ch);
-
+            buffinp.close();
+            flinp.close();
+            buffoup.close();
+            out.close();
         }
-
-        buffinp.close();
-
-        flinp.close();
-
-        buffoup.close();
-
-        out.close();
-
     }
 
 
