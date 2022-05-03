@@ -71,7 +71,6 @@ public class CalendarController {
                                                                        status,
                                                                        fileName));
                 }
-
             }
             br.close();
         }catch (IOException e) {
