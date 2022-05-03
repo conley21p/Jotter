@@ -20,35 +20,46 @@ public class ViewFileServlet extends HttpServlet {
     private Assignment currentAssignment;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+            throws ServletException, IOException {
+
+        String filePath = PathFinder.getAccountFilesPath(HomePageServlet.user.getUsername());
+        //Need to make this generalizable
         Enumeration<String> parameterNames = request.getParameterNames();
         String assignName = parameterNames.nextElement();
-
         currentAssignment = (Assignment) HomePageServlet.user.getCurrCal().getCalendarObject(assignName);
-        System.out.println(currentAssignment.getFileName());
+        String fileName = currentAssignment.getFileName();
+        //This is what's causing the download
+        response.setContentType("image/jpg");
 
-        if (currentAssignment.getFileName() != null) {
-            String filePath = PathFinder.getAccountFilesPath(HomePageServlet.user.getUsername());
-            String fileName = currentAssignment.getFileName();
-            response.setContentType("image/*");
-            ServletOutputStream out;
-            out = response.getOutputStream();
-            FileInputStream fin = new FileInputStream(filePath + File.separator + fileName);
+        ServletOutputStream out;
 
-            BufferedInputStream bin = new BufferedInputStream(fin);
-            BufferedOutputStream bout = new BufferedOutputStream(out);
-            int ch =0;
-            while((ch=bin.read())!=-1)
-            {
-                bout.write(ch);
-            }
+        out = response.getOutputStream();
 
-            bin.close();
-            fin.close();
-            bout.close();
-            out.close();
+        FileInputStream flinp = new FileInputStream(filePath + "/" + fileName);
+
+        BufferedInputStream buffinp = new BufferedInputStream(flinp);
+
+        BufferedOutputStream buffoup = new BufferedOutputStream(out);
+
+        int ch=0;
+
+        while ((ch=buffinp.read()) != -1) {
+
+            buffoup.write(ch);
+
         }
-        getServletContext().getRequestDispatcher("/viewFile.jsp").forward(request,response);
+
+        buffinp.close();
+
+        flinp.close();
+
+        buffoup.close();
+
+        out.close();
+
     }
 
 
