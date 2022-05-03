@@ -5,6 +5,7 @@ import servlets.HomePageServlet;
 import utils.PathFinder;
 
 import java.io.*;
+import java.nio.file.Path;
 
 public class CalendarController {
 
@@ -21,6 +22,27 @@ public class CalendarController {
         }
 
         return true;
+    }
+
+    public static boolean deleteCalendar(String username, String calendarName) {
+        boolean isSuccess = false;
+
+        if (getCalendarCapacity(username) <= 2) {
+            System.out.println("User must have one calendar.");
+        } else {
+            String calendarPath = PathFinder.getAccountCalendarsPath(username) + "/" + calendarName;
+
+            // deleting calendar
+            File calendarDirectory = new File(calendarPath);
+            if (calendarDirectory.delete()) {
+                isSuccess = true;
+            } else {
+                System.out.println("Failed to delete calendar.");
+            }
+        }
+
+        System.out.println("Calendar " + calendarName + " deleted? " + isSuccess);
+        return isSuccess;
     }
 
     public static String[] getCalendarNameList(String username){
@@ -44,8 +66,18 @@ public class CalendarController {
         }catch (NullPointerException e){
             System.out.println("List of all files NUll pointer error");
         }
-        //System.out.println("Return calender names list is " + calNames.toString());
+        System.out.println("Return calender names list is " + calNames.toString());
         return calNames;
+    }
+
+    public static int getCalendarCapacity(String username) {
+        int count = 0;
+        for (int i = 0; i < getCalendarNameList(username).length; i++) {
+            if (getCalendarNameList(username)[i] != null) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static Calendar getCalendar(String username,String defaultName){

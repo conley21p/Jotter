@@ -11,12 +11,12 @@
     <title>Add Calendar - Jotter</title>
 </head>
 <body>
-<a href="HomePageServlet">Back to Homepage</a><br>
+<a href="HomePageServlet">Homepage</a><br>
 
-<h1>Enter New Calendar Name Below:</h1>
+<h1>Create Calendar</h1>
 <form action="/addCalendar" method="post">
-    <h4>Calendar Name:</h4>
-    <label><input type="text" name="calendarName" required/></label>
+    <label for="newCalendar">New Calendar Name:</label>
+    <input type="text" id="newCalendar" name="calendarName">
     <button type="submit">Create Calendar</button>
 </form>
 </body>
