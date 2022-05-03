@@ -96,9 +96,10 @@ public class Calendar {
         this.calendarObjList = calendarObjList;
     }
 
-    public void sortCalendar()
+    public boolean sortCalendar()
     {
         Collections.sort(this.calendarObjList, CalendarObject.CalCourseComparator);
+        return true;
     }
 
     public int generateAnalysis()
