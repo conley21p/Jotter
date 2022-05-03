@@ -21,8 +21,7 @@
 <h4>Names:</h4>
     <c:forEach items="${assignments}" var="item">
         -${item.getName()} ${item.getCourse()}  <form action="editAssign" method="get"><input type="submit"  value="View/Edit" name="${item.getName()}" /></form>
-        <form action="/UploadFile" method="get"><input type="submit"  value="Upload File" name="${item.getName()}" /></form>
-        <form action="/ViewFile" method="get"><input type="submit"  value="View File" name="${item.getName()}" /></form>
+
     </c:forEach>
 </body>
 </html>

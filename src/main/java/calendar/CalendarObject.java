@@ -1,6 +1,5 @@
 package calendar;
 
-import account.AccountManager;
 import utils.PathFinder;
 
 import java.io.*;
@@ -89,30 +88,39 @@ public abstract class CalendarObject {
     /*
      *  This method is used to save calendar object to database
      */
-    public void edit(String name,
+    public boolean edit(String name,
                      Date date,
                      Time time,
                      String description,
                      String course){
-        name.replaceAll(","," ");
-        description.replaceAll(","," ");
-        course.replaceAll(","," ");
-        //  ParseUpdated string
-        if (!this.name.equals(name)){
-            this.setName(name);
+        try {
+            name = name.replace(",", "");
+            if (description != null){
+                description = description.replace(",", "");
+            }
+            if (course != null){
+                course = course.replace(",", "");
+            }
+            //  ParseUpdated string
+            if (!this.name.equals(name)) {
+                this.setName(name);
+            }
+            if (!this.date.equals(date)) {
+                this.setDate(date);
+            }
+            if (!this.time.equals(time)) {
+                this.setTime(time);
+            }
+            if (!this.description.equals(description)) {
+                this.setDescription(description);
+            }
+            if (!this.course.equals(course)) {
+                this.setCourse(course);
+            }
+        }catch (Exception e){
+            return false;
         }
-        if  (!this.date.equals(date)){
-            this.setDate(date);
-        }
-        if (!this.time.equals(time)){
-            this.setTime(time);
-        }
-        if (!this.description.equals(description)){
-            this.setDescription(description);
-        }
-        if (!this.course.equals(course)){
-            this.setCourse(course);
-        }
+        return true;
     }
     /*
      *  This method is used to save calendar object to database
@@ -216,10 +224,10 @@ public abstract class CalendarObject {
 
     public void setCourse(String course) {this.course = course;}
 
-    public abstract void edit(String name,
-                              Date date,
-                              Time time,
-                              String description,
-                              String course,
-                              String status);
+    public abstract boolean edit(String name,
+                                 Date date,
+                                 Time time,
+                                 String description,
+                                 String course,
+                                 String status);
 }
