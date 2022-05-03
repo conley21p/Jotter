@@ -12,7 +12,7 @@ public class LoginAuthenticator {
         String userAccountInfoPath = PathFinder.getAccountInformationPath(user);
 
         File userFile = new File(userAccountInfoPath);
-        System.out.println("test:" + userAccountInfoPath);
+
         if (userFile.exists()) {
             try {
                 Scanner scan = new Scanner(userFile);

@@ -8,6 +8,21 @@ import java.io.*;
 
 public class CalendarController {
 
+    public static boolean addCalendar(String username, String calendarName) {
+        String calendarPath = PathFinder.getAccountCalendarsPath(username);
+
+        try {
+            PrintWriter outfile = new PrintWriter(new FileWriter(new File(calendarPath + "/" + calendarName)));
+            outfile.write("");
+            outfile.close();
+        } catch (IOException e) {
+            System.out.println("Could not create calendar.");
+            return false;
+        }
+
+        return true;
+    }
+
     public static String[] getCalendarNameList(String username){
         String calendarsPath = PathFinder.getAccountCalendarsPath(username);
         //Open user/Calendar folder and store name of each file as a calendar name
