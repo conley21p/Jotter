@@ -154,6 +154,11 @@ public class Calendar {
 //        return dates;
 //    }
 
+//    //TODO Compare Schedules using generate time slots
+//    public String compareSchedules(String calName1, String calName2) {
+//
+//    }
+
     public int getCurrentSize() {
         return currentSize;
     }

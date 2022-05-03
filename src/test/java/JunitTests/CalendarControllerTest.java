@@ -1,9 +1,6 @@
 package JunitTests;
 
-import calendar.Assignment;
-import calendar.Time;
-import calendar.Date;
-import calendar.CalendarController;
+import calendar.*;
 import servlets.HomePageServlet;
 import User.User;
 import account.AccountManager;
@@ -19,6 +16,7 @@ class CalendarControllerTest {
     String password = "password";
     String email    = "test@gmail.com";
     Assignment[] testAssigns = new Assignment[4];
+    Calendar calendar = new Calendar();
 
     @BeforeEach
     void setUp() {
@@ -85,5 +83,35 @@ class CalendarControllerTest {
         assertEquals(testAssigns[1],testResult2);
         assertEquals(testAssigns[0],testResult3);
         assertEquals(testAssigns[2],testResult4);
+    }
+
+    @Test
+    void addCalendar() {
+        boolean answer = true;
+
+        boolean testResult1 = CalendarController.addCalendar(this.userName, this.calendar.getName());
+        boolean testResult2 = CalendarController.addCalendar(this.userName, new Calendar().getName());
+        boolean testResult3 = CalendarController.addCalendar(HomePageServlet.user.getUsername(), this.calendar.getName());
+        boolean testResult4 = CalendarController.addCalendar(HomePageServlet.user.getUsername(), new Calendar().getName());
+
+        assertEquals(answer,testResult1);
+        assertEquals(answer,testResult2);
+        assertEquals(answer,testResult3);
+        assertEquals(answer,testResult4);
+    }
+
+    @Test
+    void deleteCalendar() {
+        boolean answer = true;
+
+        boolean testResult1 = CalendarController.deleteCalendar(this.userName, this.calendar.getName());
+        boolean testResult2 = CalendarController.deleteCalendar(this.userName, new Calendar().getName());
+        boolean testResult3 = CalendarController.deleteCalendar(HomePageServlet.user.getUsername(), this.calendar.getName());
+        boolean testResult4 = CalendarController.deleteCalendar(HomePageServlet.user.getUsername(), new Calendar().getName());
+
+        assertEquals(!answer,testResult1);
+        assertEquals(!answer,testResult2);
+        assertEquals(!answer,testResult3);
+        assertEquals(!answer,testResult4);
     }
 }
