@@ -31,8 +31,10 @@ public class ViewFileServlet extends HttpServlet {
         String assignName = parameterNames.nextElement();
         currentAssignment = (Assignment) HomePageServlet.user.getCurrCal().getCalendarObject(assignName);
         String fileName = currentAssignment.getFileName();
+        System.out.println(fileName);
+        //fileName = "Batman.png";
         //This is what's causing the download
-        response.setContentType("image/jpg");
+        response.setContentType("image/png");
 
         ServletOutputStream out;
 

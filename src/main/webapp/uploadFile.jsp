@@ -19,7 +19,7 @@
 <form action="/UploadFile" method="post" enctype="multipart/form-data">
 
     <label for="newImage">Upload Image:</label>
-    <input type="file" id="newImage" name="newImage" accept="image/*">
+    <input type="file" id="newImage" name="newImage" accept="image/png">
     <button type="submit" name="decision" value="uploadFile">Upload Image</button><br><br><br><br>
 </form>
 
