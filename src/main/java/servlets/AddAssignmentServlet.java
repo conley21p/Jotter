@@ -36,7 +36,7 @@ public class AddAssignmentServlet extends HttpServlet {
                                                                                      desc,
                                                                                      cour,
                                                                                      "null",
-                                                                              "null"));
+                                                                                     "null"));
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -58,10 +58,10 @@ public class CalendarController {
                 String nameString = templine[3];
                 String descString = templine[4];
                 String course = templine[5];
-                String fileName = templine[7];
                 //System.out.println("Object type:"+objType);
                 if (objType.equals("A")){
                     String status = templine[6];
+                    String filename = templine[7];
                     defaultCal.addNewToCalendarObjList( username,
                                                         new Assignment(nameString,
                                                                        new Date(dateString),
@@ -69,8 +69,9 @@ public class CalendarController {
                                                                        descString,
                                                                        course,
                                                                        status,
-                                                                       fileName));
+                                                                       filename));
                 }
+
             }
             br.close();
         }catch (IOException e) {

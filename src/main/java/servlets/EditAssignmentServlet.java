@@ -42,7 +42,7 @@ public class EditAssignmentServlet extends HttpServlet {
         String cour = request.getParameter("course");
         String status;
 
-        System.out.println("button Flag" + request.getParameter("button") + ".");
+        System.out.println("button Flag: " + request.getParameter("button") + ".");
         if (request.getParameter("button").compareTo("Update") == 0) {
             if (request.getParameter("status") == null) {
                 status = "null";
@@ -88,7 +88,7 @@ public class EditAssignmentServlet extends HttpServlet {
                                                                                         desc,
                                                                                         cour,
                                                                                         "null",
-                                                                                  "null"));
+                                                                                        editingObject.getFileName()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
