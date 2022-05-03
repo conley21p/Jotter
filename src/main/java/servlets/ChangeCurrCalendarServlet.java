@@ -7,13 +7,19 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 @WebServlet(name = "ChangeCurrCalendarServlet", urlPatterns = "/ChangeCurrCalendar")
 public class ChangeCurrCalendarServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("calendars", HomePageServlet.user.getCalendarNames());
+        ArrayList<String> cals = new ArrayList<String>();
+        for (int i = 1; i < HomePageServlet.user.getCalendarNames().length; i++){
+            if (HomePageServlet.user.getCalendarNames()[i] != null)
+                cals.add(i - 1, HomePageServlet.user.getCalendarNames()[i]);
+        }
+        request.setAttribute("calendars", cals);
         request.setAttribute("size", HomePageServlet.user.getCalendarNames().length);
         //request.setAttribute("calName",     HomePageServlet.user.getCurrCal().getName());
 
