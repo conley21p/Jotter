@@ -58,6 +58,7 @@ public class CalendarController {
                 String nameString = templine[3];
                 String descString = templine[4];
                 String course = templine[5];
+                String fileName = templine[7];
                 //System.out.println("Object type:"+objType);
                 if (objType.equals("A")){
                     String status = templine[6];
@@ -67,7 +68,8 @@ public class CalendarController {
                                                                        new Time(timeString),
                                                                        descString,
                                                                        course,
-                                                                       status));
+                                                                       status,
+                                                                       fileName));
                 }
 
             }

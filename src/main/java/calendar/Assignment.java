@@ -10,10 +10,12 @@ public class Assignment extends CalendarObject{
                       Time time,
                       String description,
                       String course,
-                      String status) {
+                      String status,
+                      String fileName) {
         super(name, date, time, description, course);
         status.replaceAll(","," ");
         this.completed = status;
+        this.fileName = fileName;
     }
 
     @Override
